@@ -1,14 +1,12 @@
-# TODO
+# VERSION 0.0.1
 
-* > [!NOTE]
+Este archivo  contiene los objetivos que se marcan para cada version
 
-> Este archivo  contiene los objetivos que se marcan para cada version
+* [Vesion 0.0.1]:
 
-* [Vesion 0.0.0.]:
-
-  * [V] Crear las carpetas y archivos iniciales básicos.
-  * [V] Preparar un [CMakeLists.txt] que descargue [SDL3] y  [EnTT]
-  * [V] Configurar las opciones de [CMake] para  usar el modo Debug
-  y compilación rápida ([ccache])
-  * [V] Crear un ejemplo básico para comprobar el funcionamiento de las librerías
-  * [V] Crear el versioned del proyecto
+  * [V] Crear una Engine encargada de inicio y manejo de [SDL3] (Ventana , Render).
+  * [V] Crear una Game encargado de cargar los recursos del juego
+  y manejarlos (escenas , images ,etc).
+  * [] text
+  * [] text
+  * [] text

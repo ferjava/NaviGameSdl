@@ -60,6 +60,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}Source/)
 
 add_executable(${GAME_NAME})
 
+target_include_directories(${GAME_NAME} PRIVATE
+  "${CMAKE_BINARY_DIR}/Generated")
 target_sources(${GAME_NAME} PRIVATE ${GAME_SOURCE})
 target_link_libraries(${GAME_NAME} PRIVATE
   SDL3::SDL3-shared
