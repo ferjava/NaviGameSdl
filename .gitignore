@@ -1,0 +1,8 @@
+#Capetas
+Debug
+.cache
+
+#Archivos
+*.obj
+*.o
+
