@@ -41,7 +41,7 @@ public:
   float GetFWindowHeight() const;
   int GetWindowWidth() const;
   float GetFWindowWidth() const;
-
+  SDL_Renderer *GetRenderer() { return _renderer.get(); };
   template <typename T> void Run() {
     _game = std::make_unique<T>();
     _game->OnInit(*this); // Inicialización del usuario
