@@ -1,5 +1,5 @@
 #include "Core/Engine.hpp"
-#include "Game/MyGame.hpp"
+#include "Game/NaviGame.hpp"
 #include "Version.h"
 #include <exception>
 int main(int argc, char *argv[]) {
@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     // 2. Crear el juego
 
     // 3. ¡A correr!
-    engine.Run<MyGame>();
+    engine.Run<NaviGame>();
 
   } catch (const std::exception &e) {
     SDL_Log("Error: %s", e.what());

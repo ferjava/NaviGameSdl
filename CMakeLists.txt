@@ -7,6 +7,12 @@ project(${GAME_NAME}
 #Ponemos en modo debug
 set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#Acticando AdressSanitizer
+#if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+#  message(STATUS "Configurando AdressSanitizer")
+#  add_compile_options(-fsanitize=address -fno-omit-frame-pointer -g)
+#  add_link_options(-fsanitize=address)
+#endif()
 #Carpeta de assets
 set(ASSETS_SOURCE_DIR  "${CMAKE_SOURCE_DIR}/assets")
 set(ASSETS_DESTINY_DIR "${CMAKE_BINARY_DIR}/assets")

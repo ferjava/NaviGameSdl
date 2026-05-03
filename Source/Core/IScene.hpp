@@ -13,7 +13,7 @@ public:
   ///@brief: Es fuccion se encarga de iniciar los recursos
   /// de la escena y como parametro pide la direccion del juego donde
   /// se actua esta escena
-  virtual void OnInit(IGame *game) = 0;
+  virtual bool OnInit() = 0;
   ///
   ///@brief Esta fucion se repetira y actaulizara en el tiempo de vida
   /// del juego
@@ -23,7 +23,7 @@ public:
   //
   //@brief : Esta funcion se encarga de renderizar las imagenes de la escena
   //@param : direccion de renderer donde los copiaremos nuestras imagenes
-  virtual void OnRender(SDL_Renderer *render) = 0;
+  virtual void OnRender(SDL_Renderer *render = nullptr) = 0;
   //
   //@brief: Esta funcion se encargara de liberar recursos de la escena
   //
