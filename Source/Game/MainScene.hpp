@@ -1,8 +1,8 @@
 #pragma once
 #include "../Core/IScene.hpp"
 #include "../Core/TextureManager.hpp"
-#include "SDL3/SDL_render.h"
-#include <memory>
+#include "entt/entity/fwd.hpp"
+#include "entt/entt.hpp"
 class NaviGame;
 class MainScene : public IScene {
 public:
@@ -17,8 +17,6 @@ public:
 
 private:
   TextureManager _texture;
-  NaviGame *_game; //< Juego al que pertenece las escena
-  std::shared_ptr<SDL_Texture> _nave;
-  std::shared_ptr<SDL_Texture> _textversion;
-  std::shared_ptr<SDL_Texture> _nave2;
+  NaviGame *_game;          //< Juego al que pertenece las escena
+  entt::registry _registro; // El mundo en EnTT
 };
