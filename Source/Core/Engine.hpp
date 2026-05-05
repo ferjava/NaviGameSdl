@@ -37,10 +37,10 @@ public:
   //
   void Exit();
   // Getters
-  int GetWindowHeight() const;
-  float GetFWindowHeight() const;
-  int GetWindowWidth() const;
-  float GetFWindowWidth() const;
+  int GetWindowHeight() const { return _height; };
+  float GetFWindowHeight() const { return (float)_height; };
+  int GetWindowWidth() const { return _witdh; };
+  float GetFWindowWidth() const { return (float)_witdh; };
   SDL_Renderer *GetRenderer() { return _renderer.get(); };
   template <typename T> void Run() {
     _game = std::make_unique<T>();

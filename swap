@@ -1,16 +1,3 @@
-# TODO
-
-## [VERSION 0.0.01]
-
-Este archivo  contiene los objetivos que se marcan para cada version
-
-* [V] Crear una Engine encargada de inicio y manejo de [SDL3] (Ventana , Render).
-* [V] Crear una Game encargado de cargar los recursos del juego
-  y manejarlos (escenas , images ,etc).
-* [V] Crear una base para nuestras IScene para crear escenas
-* [V] Utilizar un SceneManager para manejar las escenas
-* [V] Realizar un pequeña prueba de que todo funciona.
-
 ## VERSION 0.0.02
 
 "Objetivo principal para esta version.Hacer que un sprite
