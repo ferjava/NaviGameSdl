@@ -3,8 +3,8 @@
 "Objetivo principal para esta version.Hacer que un sprite
 (nave)se mueva por la pantalla al pulsar las teclas AWSD"
 [V] Integrar Entt y crear etiquetas,sistemas y entidades
-[] Crear el sistema de movimiento asociado a l teclado
+[V] Crear el sistema de movimiento asociado a l teclado
 [V] Crear las etiqueta Grafica asociada a un SDL_Textura como un smart_Pointer
-[] Permitir que el TextureManager podamos añadirle una textura
+[V] Permitir que el TextureManager podamos añadirle una textura
 creada como (un texto , un rectangulo , circulo ,etc )
-[] Comprobar no tener fugas de memoria.
+[V] Comprobar no tener fugas de memoria.
