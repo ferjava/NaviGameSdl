@@ -1,8 +1,10 @@
 #include "MainScene.hpp"
+#include "../Componentes/GameTags.hpp"
 #include "../Componentes/Graficos.hpp"
 #include "../Componentes/transformadas.hpp"
 #include "../Sistemas/Sistemas.hpp"
 #include "NaviGame.hpp"
+#include "SDL3/SDL_events.h"
 #include "SDL3/SDL_keyboard.h"
 #include "SDL3/SDL_rect.h"
 #include "SDL3/SDL_render.h"
@@ -21,6 +23,7 @@ bool MainScene::OnInit() {
                                   _game->getEngine()->GetFWindowHeight() / 2);
   _registro.emplace<GC::Velocidad>(nave, 0.0f, 0.0f);
   _registro.emplace<GC::Sprite>(nave, sprite, sprite_src);
+  _registro.emplace<GC::Player>(nave);
   auto nave2 = _registro.create();
   _registro.emplace<GC::Posicion>(nave2, 25.0f, 25.0f);
   _registro.emplace<GC::Velocidad>(nave2, 0.0f, 10.0f);
@@ -33,6 +36,7 @@ void MainScene::OnUpdate(float dt) {
   if (keys[SDL_SCANCODE_ESCAPE])
     OnExit();
   Sistema::Movimiento(_registro, dt);
+  Sistema::Entrada_Teclado(_registro);
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {
 
