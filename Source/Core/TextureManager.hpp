@@ -9,7 +9,7 @@ class TextureManager {
 
 public:
   void Init(SDL_Renderer *render) { _renderer = render; };
-  void Add(SDL_Texture *texture, std::string &name);
+  void Add(SDL_Texture *texture, const std::string &name);
   std::shared_ptr<SDL_Texture> getTexture(const std::string &path);
   void ClearUnused();
 

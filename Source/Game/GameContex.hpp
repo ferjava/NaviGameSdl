@@ -5,4 +5,5 @@
 struct GameContext {
   SDL_FRect pantalla;
   TextureManager *tm;
+  SDL_Renderer *render;
 };

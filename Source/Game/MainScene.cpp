@@ -13,15 +13,16 @@ MainScene::MainScene(NaviGame *game) : _game(game) {}
 
 bool MainScene::OnInit() {
   // Creamos una entityi)
-  _texture.Init(_game->getEngine()->GetRenderer());
+  _texture.Init(NaviGame::ctx.render);
   NaviGame::ctx.tm = &_texture;
   Factory::createPlayer(_registro, NaviGame::ctx);
-
+  Factory::createVersionText(_registro, NaviGame::ctx);
   return true;
 }
 void MainScene::OnUpdate(float dt) {
 
-  SDL_FRect limite{0.0f, 0.0f, _game->GetGameWidth(), _game->GetGameHeigth()};
+  SDL_FRect limite{0.0f, 0.0f, NaviGame::ctx.pantalla.w,
+                   NaviGame::ctx.pantalla.h};
   const bool *keys = SDL_GetKeyboardState(NULL);
   if (keys[SDL_SCANCODE_ESCAPE])
     OnExit();
@@ -31,12 +32,11 @@ void MainScene::OnUpdate(float dt) {
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {
 
-  renderer = _game->getEngine()->GetRenderer();
+  renderer = NaviGame::ctx.render;
   Sistema::Dibujado(_registro, renderer);
 }
 void MainScene::OnExit() {
   // Liberamos los punteros
-
   _game->getEngine()->Exit();
 }
 void MainScene::OnCleanUp() {}

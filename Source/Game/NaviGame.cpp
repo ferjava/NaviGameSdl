@@ -12,6 +12,7 @@ void NaviGame::OnInit(Engine &engine) {
   SDL_GetWindowSize(_engine->GetWindow(), &_width, &_height);
   ctx.pantalla.w = _width;
   ctx.pantalla.h = _height;
+  ctx.render = engine.GetRenderer();
   auto mainscene = std::make_unique<MainScene>(this);
   _scenedirector.Push(std::move(mainscene));
   _scenedirector.Current()->OnInit();
@@ -22,7 +23,7 @@ void NaviGame::OnUpdate(float deltaTime) {
 }
 
 void NaviGame::OnRender(SDL_Renderer *renderer) {
-  renderer = _engine->GetRenderer();
+  renderer = NaviGame::ctx.render;
   _scenedirector.Current()->OnRender(renderer);
 }
 

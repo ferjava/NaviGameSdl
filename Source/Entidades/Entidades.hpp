@@ -7,5 +7,5 @@
 #include "entt/entity/fwd.hpp"
 namespace Factory {
 void createPlayer(entt::registry &reg, GameContext &ctx);
-
-}
+void createVersionText(entt::registry &reg, GameContext &ctx);
+} // namespace Factory
