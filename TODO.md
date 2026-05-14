@@ -34,5 +34,5 @@ creada como (un texto , un rectángulo , circulo ,etc )
 * [V] Limitar el movimiento al area de la pantalla
 * [V] Limitar aun cuando hagamos [FULLSCREEN]
 * [V] Crear la entidad Player
-* [] Mostrar Texto de version en esquina inferior derecha
-* [] Comprobar si ha fugas y depuración
+* [V] Mostrar Texto de version en esquina inferior derecha
+* [V] Comprobar si ha fugas y depuración

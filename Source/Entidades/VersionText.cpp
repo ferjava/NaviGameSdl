@@ -13,7 +13,7 @@
 
 void Factory::createVersionText(entt::registry &reg, GameContext &ctx) {
   // Creamos el Texto
-  auto font = TTF_OpenFont("assets/fonts/arial.ttf", 36.0f);
+  auto font = TTF_OpenFont("assets/fonts/Marker Felt.ttf", 12.0f);
   if (!font)
     SDL_Log("error al cargar la fuente de texto");
   // Creamos la surface
@@ -33,13 +33,12 @@ void Factory::createVersionText(entt::registry &reg, GameContext &ctx) {
   TTF_CloseFont(font);
   // Aqui empezamos con entt
   auto textversion = NaviGame::ctx.tm->getTexture("textversion");
-  auto textsourc = SDL_FRect{0, 0, (float)textversion.get()->w + 10.0f,
-                             (float)textversion.get()->h};
+  auto textsourc =
+      SDL_FRect{0, 0, (float)textversion.get()->w, (float)textversion.get()->h};
   auto _textversion = reg.create();
 
-  reg.emplace<GC::Posicion>(_textversion,
-                            ctx.pantalla.w - (textversion->w + 30.0f),
-                            ctx.pantalla.h - (textversion->h + 20.0f));
+  reg.emplace<GC::Posicion>(_textversion, ctx.pantalla.w - textversion->w,
+                            ctx.pantalla.h - textversion->h);
   reg.emplace<GC::Velocidad>(_textversion, 0.0f, 0.0f);
   reg.emplace<GC::Sprite>(_textversion, textversion, textsourc);
 }
