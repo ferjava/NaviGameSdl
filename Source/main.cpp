@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
   try {
     // 1. Crear el motor
-    Engine engine(PROJECT_NAME, 800, 600);
+    Engine engine(PROJECT_NAME, 1024, 768);
 
     // 2. Crear el juego
 

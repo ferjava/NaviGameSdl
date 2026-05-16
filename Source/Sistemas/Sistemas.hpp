@@ -8,6 +8,10 @@ namespace Sistema {
 void Movimiento(entt::registry &reg, float dt); // Declaracion para movimiento
 void Dibujado(entt::registry &reg,
               SDL_Renderer *render); // Declaracion del sistema Dibujado
-void Entrada_Teclado(entt::registry &reg);
+void Entrada_Teclado(entt::registry &reg,
+                     float dt); // Declaracion de la asignacion de
+                                // teclas al movimiento
+void Frontera(entt::registry &reg,
+              SDL_FRect &area); // Limita el movimiento fuera de la pantalla
 
 } // namespace Sistema

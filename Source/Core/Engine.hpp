@@ -9,6 +9,7 @@
 ///@Version:0.0.1
 
 #include "IGame.hpp"
+#include "SDL3/SDL_video.h"
 #include "SDLContext.hpp"
 #include <SDL3/SDL.h>
 #include <memory>
@@ -42,6 +43,7 @@ public:
   int GetWindowWidth() const { return _witdh; };
   float GetFWindowWidth() const { return (float)_witdh; };
   SDL_Renderer *GetRenderer() { return _renderer.get(); };
+  SDL_Window *GetWindow() { return _window.get(); };
   template <typename T> void Run() {
     _game = std::make_unique<T>();
     _game->OnInit(*this); // Inicialización del usuario
@@ -52,7 +54,6 @@ public:
     float delta_time = 0.0f;
 
     is_running = true;
-
     while (is_running) {
       // --- 1. Cálculo del Delta Time ---
       Uint64 current_time = SDL_GetPerformanceCounter();
@@ -64,7 +65,6 @@ public:
       // Limitar el delta_time para evitar "saltos" si la ventana se congela
       if (delta_time > 0.1f)
         delta_time = 0.1f;
-
       // --- 2. Procesar Eventos ---
       HandleEvents();
 
