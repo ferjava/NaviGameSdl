@@ -44,8 +44,8 @@ creada como (un texto , un rectángulo , circulo ,etc )
 >Ademas añadiremos una nueva entidad bala (un circulo blanco) que se
 >mostrara en pantalla cuando el jugador pulse la tecla space
 
-* [] Crear las animaciones para el movimiento
+* [V] Crear las animaciones para el movimiento
 * [V] Crear [SDL_Texture] (circulo) y añadirlo al [TextureManager]
 * [V] Asociar la bala con la pulsación del teclado
 * [V] Colocar la bala/s con el sprite de la nave
-* [] Comprobación de fugas de memoria y depuración
+* [V] Comprobación de fugas de memoria y depuración
