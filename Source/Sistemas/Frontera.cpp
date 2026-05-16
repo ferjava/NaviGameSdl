@@ -15,14 +15,14 @@ void Sistema::Frontera(entt::registry &reg, SDL_FRect &area) {
     if (pos.X < area.x) {
       pos.X = area.x;
     }
-    if ((pos.X + spr.source.w / 2) > area.w) {
-      pos.X = area.w - spr.source.w / 2;
+    if ((pos.X + spr.dest.w) > area.w) {
+      pos.X = area.w - spr.dest.w;
     }
     if (pos.Y < area.y) {
       pos.Y = area.y;
     }
-    if ((pos.Y + spr.source.h / 2) > area.h) {
-      pos.Y = area.h - spr.source.h / 2;
+    if ((pos.Y + spr.dest.h) > area.h) {
+      pos.Y = area.h - spr.dest.h;
     }
   }
 }

@@ -9,9 +9,10 @@
 #include "SDL3/SDL_surface.h"
 #include "SDL3_ttf/SDL_ttf.h"
 #include "Version.h"
+#include "entt/entity/fwd.hpp"
 #include "entt/entt.hpp"
 
-void Factory::createVersionText(entt::registry &reg, GameContext &ctx) {
+entt::entity Factory::createVersionText(entt::registry &reg, GameContext &ctx) {
   // Creamos el Texto
   auto font = TTF_OpenFont("assets/fonts/Marker Felt.ttf", 12.0f);
   if (!font)
@@ -41,4 +42,5 @@ void Factory::createVersionText(entt::registry &reg, GameContext &ctx) {
                             ctx.pantalla.h - textversion->h);
   reg.emplace<GC::Velocidad>(_textversion, 0.0f, 0.0f);
   reg.emplace<GC::Sprite>(_textversion, textversion, textsourc);
+  return _textversion;
 }
