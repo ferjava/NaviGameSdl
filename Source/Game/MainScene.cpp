@@ -5,7 +5,6 @@
 #include "GameContex.hpp"
 #include "NaviGame.hpp"
 #include "SDL3/SDL_keyboard.h"
-#include "SDL3/SDL_rect.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_scancode.h"
 
@@ -21,14 +20,12 @@ bool MainScene::OnInit() {
 }
 void MainScene::OnUpdate(float dt) {
 
-  SDL_FRect limite{0.0f, 0.0f, NaviGame::ctx.pantalla.w,
-                   NaviGame::ctx.pantalla.h};
   const bool *keys = SDL_GetKeyboardState(NULL);
   if (keys[SDL_SCANCODE_ESCAPE])
     OnExit();
   Sistema::Movimiento(_registro, dt);
-  Sistema::Entrada_Teclado(_registro);
-  Sistema::Frontera(_registro, limite);
+  Sistema::Entrada_Teclado(_registro, dt);
+  Sistema::Frontera(_registro, NaviGame::ctx.pantalla);
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {
 
