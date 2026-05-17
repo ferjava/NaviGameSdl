@@ -4,14 +4,15 @@
 #include "SDL3/SDL_keyboard.h"
 #include "SDL3/SDL_scancode.h"
 #include "Sistemas.hpp"
+#include "entt/entity/fwd.hpp"
 float disparoTimer = 0.0f;
 const float COOLDOWN_DISPARO = 0.2f;
 std::vector<float> ANIMACION = {0, 100, 200, 300, 400, 500, 600};
-
 void Sistema::Entrada_Teclado(entt::registry &reg, float dt) {
   auto view = reg.view<GC::Player, GC::Velocidad, GC::Posicion, GC::Sprite>();
   const bool *keys = SDL_GetKeyboardState(nullptr);
   disparoTimer += dt;
+
   for (auto entity : view) {
     auto &vel = view.get<GC::Velocidad>(entity);
     auto &sp = view.get<GC::Sprite>(entity);
@@ -40,6 +41,7 @@ void Sistema::Entrada_Teclado(entt::registry &reg, float dt) {
         auto &bpos = view.get<GC::Posicion>(_bala1);
         bpos = view.get<GC::Posicion>(entity);
         bpos.X = bpos.X + 7.5f;
+
         auto _bala2 = Factory::creatBullet(reg, NaviGame::ctx);
         auto &bpos2 = view.get<GC::Posicion>(_bala2);
         bpos2 = view.get<GC::Posicion>(entity);
