@@ -1,4 +1,6 @@
 #include "../Componentes/Componentes.hpp"
+#include "../Game/GameConfig.hpp"
+#include "../Game/NaviGame.hpp"
 #include "SDL3/SDL_log.h"
 #include "Sistemas.hpp"
 #include "entt/entity/fwd.hpp"
@@ -17,9 +19,22 @@ void Sistema::Movimiento(entt::registry &reg, float dt) {
         EntidadParaDestruir.push_back(enti);
       }
     }
+    if (reg.all_of<GC::Enemy>(enti)) {
+      if (pos.X <= 0) {
+        auto &sp = reg.get<GC::Sprite>(enti);
+        sp.source.x = Game::Enemy::MOVE_RIGHT;
+        vel.Vx = Game::Enemy::VELOCIDAD_X;
+
+      } else if (pos.X + Game::Enemy::TEXTURE_W >= NaviGame::ctx.pantalla.w) {
+
+        auto &sp = reg.get<GC::Sprite>(enti);
+        sp.source.x = Game::Enemy::MOVE_LEFT;
+        vel.Vx = -Game::Enemy::VELOCIDAD_X;
+      }
+    }
   }
   for (auto entidad : EntidadParaDestruir) {
     reg.destroy(entidad);
-    SDL_Log("Bala destruida ");
+    // SDL_Log("Bala destruida ");
   }
 }

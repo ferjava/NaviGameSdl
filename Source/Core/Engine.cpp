@@ -16,7 +16,8 @@ Engine::Engine(std::string title, int width, int height)
   _renderer.reset(SDL_CreateRenderer(_window.get(), NULL));
   if (!_renderer)
     throw std::runtime_error(SDL_GetError());
-
+  SDL_SetRenderLogicalPresentation(_renderer.get(), 1920, 1080,
+                                   SDL_LOGICAL_PRESENTATION_LETTERBOX);
   is_running = true;
 }
 void Engine::HandleEvents() {
