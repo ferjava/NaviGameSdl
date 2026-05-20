@@ -15,6 +15,7 @@ bool MainScene::OnInit() {
   _texture.Init(NaviGame::ctx.render);
   NaviGame::ctx.tm = &_texture;
   Factory::createPlayer(_registro, NaviGame::ctx);
+  Factory::createEnemy(_registro, NaviGame::ctx);
   Factory::createVersionText(_registro, NaviGame::ctx);
   return true;
 }
@@ -25,6 +26,7 @@ void MainScene::OnUpdate(float dt) {
     OnExit();
   Sistema::Movimiento(_registro, dt);
   Sistema::Entrada_Teclado(_registro, dt);
+  Sistema::Colisones(_registro);
   Sistema::Frontera(_registro, NaviGame::ctx.pantalla);
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {

@@ -3,6 +3,8 @@
 //@brief:  Son estruturas vacias que identifican las entidades
 namespace GC {
 
-struct Player {}; // Entidad Jugador
-struct Bala {};   // Entidad bala
+struct Player {};     // Entidad Jugador
+struct BalaPlayer {}; // Entidad bala de Jugador;
+struct BalaEnemy {};
+struct Enemy {}; // Entidad Enemigo
 } // namespace GC
