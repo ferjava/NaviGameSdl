@@ -2,9 +2,17 @@
 #include "../Game/GameConfig.hpp"
 #include "Entidades.hpp"
 #include "SDL3/SDL_log.h"
+#include "entt/entity/fwd.hpp"
 #include "entt/entt.hpp"
 
-entt::entity Factory::creatBullet(entt::registry &reg, GameContext &ctx) {
+void colosion_bala(entt::registry &reg, entt::entity &entidad,
+                   std::vector<entt::entity> &destroyer, GameContext &ctx) {
+  SDL_Log("Choque con bala");
+  destroyer.push_back(entidad);
+  // reg.destroy(entidad);
+}
+
+entt::entity Factory::creatBulletPlayer(entt::registry &reg, GameContext &ctx) {
 
   auto _balasp = ctx.tm->getTexture("assets/images/bala.png");
   if (!_balasp)
@@ -15,7 +23,8 @@ entt::entity Factory::creatBullet(entt::registry &reg, GameContext &ctx) {
   reg.emplace<GC::Sprite>(bala, _balasp, src, dest);
   reg.emplace<GC::Posicion>(bala, 0.0f, 0.0f);
   reg.emplace<GC::Velocidad>(bala, 0.0f, -Game::Bala::VELOCIDAD_BALA);
-  reg.emplace<GC::Bala>(bala);
+  reg.emplace<GC::Collidable>(bala, false, dest, colosion_bala);
+  reg.emplace<GC::BalaPlayer>(bala);
 
   return bala;
 }

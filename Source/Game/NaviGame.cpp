@@ -22,6 +22,7 @@ void NaviGame::OnInit(Engine &engine) {
 }
 void NaviGame::OnUpdate(float deltaTime) {
 
+  ctx.delta_time = &deltaTime;
   _scenedirector.Current()->OnUpdate(deltaTime);
 }
 

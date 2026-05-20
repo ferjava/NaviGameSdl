@@ -37,13 +37,13 @@ void Sistema::Entrada_Teclado(entt::registry &reg, float dt) {
     if (keys[SDL_SCANCODE_SPACE]) {
       if (disparoTimer >= COOLDOWN_DISPARO) {
         disparoTimer = 0.0f;
-        auto _bala1 = Factory::creatBullet(reg, NaviGame::ctx);
+        auto _bala1 = Factory::creatBulletPlayer(reg, NaviGame::ctx);
         auto &bpos = view.get<GC::Posicion>(_bala1);
         bpos = view.get<GC::Posicion>(entity);
         bpos.X = bpos.X + 15.0f;
         bpos.Y = bpos.Y + 25.0f;
 
-        auto _bala2 = Factory::creatBullet(reg, NaviGame::ctx);
+        auto _bala2 = Factory::creatBulletPlayer(reg, NaviGame::ctx);
         auto &bpos2 = view.get<GC::Posicion>(_bala2);
         bpos2 = view.get<GC::Posicion>(entity);
         bpos2.X = bpos2.X + 50.0f;

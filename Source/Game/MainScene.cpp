@@ -26,6 +26,7 @@ void MainScene::OnUpdate(float dt) {
     OnExit();
   Sistema::Movimiento(_registro, dt);
   Sistema::Entrada_Teclado(_registro, dt);
+  Sistema::Colisones(_registro);
   Sistema::Frontera(_registro, NaviGame::ctx.pantalla);
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {

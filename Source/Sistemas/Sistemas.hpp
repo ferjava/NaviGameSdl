@@ -14,4 +14,6 @@ void Entrada_Teclado(entt::registry &reg,
 void Frontera(entt::registry &reg,
               SDL_FRect &area); // Limita el movimiento fuera de la pantalla
 
+void Colisones(entt::registry &reg);
+
 } // namespace Sistema

@@ -1,7 +1,6 @@
 #include "../Componentes/Componentes.hpp"
 #include "../Game/GameConfig.hpp"
 #include "../Game/NaviGame.hpp"
-#include "SDL3/SDL_log.h"
 #include "Sistemas.hpp"
 #include "entt/entity/fwd.hpp"
 void Sistema::Movimiento(entt::registry &reg, float dt) {
@@ -14,7 +13,7 @@ void Sistema::Movimiento(entt::registry &reg, float dt) {
     pos.X += vel.Vx * dt;
     pos.Y += vel.Vy * dt;
     // Comprobamos las balas
-    if (reg.all_of<GC::Bala>(enti)) {
+    if (reg.all_of<GC::BalaPlayer>(enti)) {
       if (pos.Y <= 0) {
         EntidadParaDestruir.push_back(enti);
       }

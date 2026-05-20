@@ -15,6 +15,7 @@ entt::entity Factory::createPlayer(entt::registry &reg, GameContext &ctx) {
   reg.emplace<GC::Posicion>(nave, ctx.pantalla.w / 2, ctx.pantalla.h / 2);
   reg.emplace<GC::Velocidad>(nave, 0.0f, 0.0f);
   reg.emplace<GC::Sprite>(nave, sprite, sprite_src, sprite_dest);
+  reg.emplace<GC::Collidable>(nave, false, sprite_dest);
   reg.emplace<GC::Player>(nave);
   return nave;
 }
