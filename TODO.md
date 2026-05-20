@@ -10,7 +10,7 @@
 - [V] Añadirle un movimiento (Cruzara la pantalla de manera horizontal)
 - [V] Añadimos un detector de colisiones
 - [V] Comprobamos colisiones con el log
-- [] Depuración y comprobación de memoria
+- [V] Depuración y comprobación de memoria
 
 > [!WARNING]
 > Ahora las balas son eliminadas al salir por la pantalla
