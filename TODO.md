@@ -1,16 +1,13 @@
 # TODO
 
-## VERSION 0.0.05
+## VERSION 0.0.06
 
 > [!NOTE]
-> Añadimos ya un enemigo.Le daremos movimiento
-> También crearemos y detector de colisiones
+> Añadimos animaciones a los choques .Ahora al chocar el player con la nave
+> enemiga o la nave enemiga con una bala se vera una animación de una explosión
 
-- [V] Crear la entidad enemy.
-- [V] Añadirle un movimiento (Cruzara la pantalla de manera horizontal)
-- [V] Añadimos un detector de colisiones
-- [V] Comprobamos colisiones con el log
-- [V] Depuración y comprobación de memoria
-
-> [!WARNING]
-> Ahora las balas son eliminadas al salir por la pantalla
+- [] Crear el componente animación
+- [] Crear un sistema para las animaciones
+- [] crear una entidad con una animación de explosión
+- [] Añadir la animación explosión a las naves (cuando se destruyen)
+- [] Depuración y comprobación de memoria

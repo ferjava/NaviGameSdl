@@ -25,4 +25,13 @@ struct Collidable {
                      std::vector<entt::entity> &destructor, GameContext &ctx)>
       alcolisonar;
 };
+
+struct Animacion {
+  std::vector<SDL_FRect>
+      frame;  // Vector que contiene los rectangulos de las animaciones
+  float time; // tiempo para que pase cada frame
+  bool repite = false;
+  bool terminada = false;
+};
+
 } // namespace GC
