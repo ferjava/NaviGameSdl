@@ -1,30 +1,39 @@
 #include "../Componentes/Componentes.hpp"
 #include "Sistemas.hpp"
-void Sistema::Animaciones(entt::registry &reg, float dt) {
-  float animatimer = 0.0f;
-  auto view = reg.view<GC::Sprite, GC::Animacion>();
 
+int indice = 0;
+float animatimer = 0.0f;
+void Sistema::Animaciones(entt::registry &reg, float dt) {
+  // float animatimer = 0.0f;
+  auto view = reg.view<GC::Sprite, GC::Animacion>();
+  animatimer += dt;
   for (auto enti : view) {
     auto &sprite = view.get<GC::Sprite>(enti);
     auto &anima = view.get<GC::Animacion>(enti);
     // Modificamos con el tiempo
-    animatimer += dt;
 
-    for (auto actualframe = anima.frame.begin();
-         actualframe != anima.frame.end();) {
-      sprite.source = *actualframe;
-      if (animatimer >= anima.time) {
+    if (indice < anima.frame.size()) {
+      auto actualframe = anima.frame[indice];
+      sprite.source = actualframe;
+      if (animatimer > anima.time) {
         animatimer = 0.0f;
-        actualframe++;
+        indice++;
+        if (indice >= anima.frame.size()) {
+          indice = anima.frame.size();
+        }
       }
-      if (actualframe == anima.frame.end()) {
-        anima.terminada = true;
-      }
+    } else {
 
-      if (actualframe == anima.frame.end() && anima.repite) {
-        actualframe = anima.frame.begin();
+      if (anima.repite) {
+        // sprite.source = actualframe;
+        indice = 0;
+      } else {
+        reg.destroy(enti);
       }
+      // if (indice == anima.frame.size()) {
+      // sprite.source = actualframe;
+
+      anima.terminada = true;
     }
-    anima.terminada = true;
   }
 }

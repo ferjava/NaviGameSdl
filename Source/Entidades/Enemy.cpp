@@ -9,6 +9,10 @@
 void colisionEnemy(entt::registry &reg, entt::entity &entidad,
                    std::vector<entt::entity> &destroyer, GameContext &ctx) {
   SDL_Log(" Colsion en Enemigo");
+  auto exploent = Factory::createExplosion(reg, ctx);
+  auto &pos = reg.get<GC::Posicion>(exploent);
+  pos = reg.get<GC::Posicion>(entidad);
+
   destroyer.push_back(entidad);
 }
 entt::entity Factory::createEnemy(entt::registry &reg, GameContext &ctx) {

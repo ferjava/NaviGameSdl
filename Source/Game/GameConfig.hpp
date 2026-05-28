@@ -29,5 +29,16 @@ constexpr float VELOCIDAD_BALA = 400.0f;
 constexpr float TAMANO_BALA = 8.0f;
 
 } // namespace Bala
+namespace Explosion {
+constexpr float TEXTURE_W = 18.0f;
+constexpr float TEXTURE_H = 18.0f;
+inline std::vector<float> SOURCE_X = {2,
+                                      (TEXTURE_W + 1) * 1,
+                                      (TEXTURE_W + 1) * 2,
+                                      (TEXTURE_W + 1) * 3,
+                                      (TEXTURE_W + 1) * 4,
+                                      (TEXTURE_W + 1) * 5};
+constexpr float SOURCE_Y = 55.0f;
+} // namespace Explosion
 
 } // namespace Game
