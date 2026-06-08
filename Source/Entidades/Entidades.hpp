@@ -11,5 +11,7 @@ entt::entity createVersionText(entt::registry &reg, GameContext &ctx);
 entt::entity creatBulletPlayer(entt::registry &reg, GameContext &ctx);
 entt::entity createEnemy(entt::registry &reg, GameContext &ctx);
 entt::entity createExplosion(entt::registry &reg, GameContext &ctx);
-
+void createGroupEnemysStraight(
+    entt::registry &reg,
+    GameContext &ctx); // Crea grupos de enemigos del grupo straight
 } // namespace Factory

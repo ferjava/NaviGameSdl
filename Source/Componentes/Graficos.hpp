@@ -21,6 +21,7 @@ struct Sprite {
 struct Collidable {
   bool isColliding = false;
   SDL_FRect BoxCollidable;
+
   std::function<void(entt::registry &reg, entt::entity &enitidad,
                      std::vector<entt::entity> &destructor, GameContext &ctx)>
       alcolisonar;

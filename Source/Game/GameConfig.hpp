@@ -18,14 +18,16 @@ namespace Enemy {
 
 constexpr float TEXTURE_W = 24.0f;
 constexpr float TEXTURE_H = 24.0f;
-inline float VELOCIDAD_X = 100.0f;
+inline float VELOCIDAD_X = 300.0f;
 constexpr float MOVE_RIGHT = (6 * Game::Enemy::TEXTURE_W) + 400.0f;
 constexpr float MOVE_LEFT = (0 * Game::Enemy::TEXTURE_W) + 400.0f;
-
+namespace Straight {
+constexpr int Grupo = 6; //< determina cuantos iran en un grupo
+}
 } // namespace Enemy
 namespace Bala {
 
-constexpr float VELOCIDAD_BALA = 400.0f;
+constexpr float VELOCIDAD_BALA = 500.0f;
 constexpr float TAMANO_BALA = 8.0f;
 
 } // namespace Bala

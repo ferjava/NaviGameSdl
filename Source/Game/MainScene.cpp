@@ -15,7 +15,7 @@ bool MainScene::OnInit() {
   _texture.Init(NaviGame::ctx.render);
   NaviGame::ctx.tm = &_texture;
   Factory::createPlayer(_registro, NaviGame::ctx);
-  Factory::createEnemy(_registro, NaviGame::ctx);
+  Factory::createGroupEnemysStraight(_registro, NaviGame::ctx);
   Factory::createVersionText(_registro, NaviGame::ctx);
   return true;
 }

@@ -1,13 +1,12 @@
 # TODO
 
-## VERSION 0.0.06
+## VERSION 0.0.07
 
 > [!NOTE]
-> Añadimos animaciones a los choques .Ahora al chocar el player con la nave
-> enemiga o la nave enemiga con una bala se vera una animación de una explosión
+> Crear un array de enemigos que se sigan uno al otro .También
+> añadiremos la acción de disparo a los enemigos
 
-- [V] Crear el componente animación
-- [V] Crear un sistema para las animaciones
-- [V] crear una entidad con una animación de explosión
-- [V] Añadir la animación explosión a las naves (cuando se destruyen)
+- [V] Crear array de enemigos
+- [] Añadir la acción de disparo a los enemigos
+- [] Añadir acciones al movimiento de las naves
 - [] Depuración y comprobación de memoria
