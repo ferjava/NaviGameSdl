@@ -5,6 +5,6 @@ namespace GC {
 
 struct Player {};     // Entidad Jugador
 struct BalaPlayer {}; // Entidad bala de Jugador;
-struct BalaEnemy {};
-struct Enemy {}; // Entidad Enemigo
+struct BalaEnemy {};  // Entidad bala enemiga
+struct Enemy {};      // Entidad Enemigo
 } // namespace GC

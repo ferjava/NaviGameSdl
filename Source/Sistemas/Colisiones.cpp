@@ -51,6 +51,19 @@ void Sistema::Colisones(entt::registry &reg) {
           continue;
         }
 
+        if (reg.all_of<GC::BalaEnemy>(entiA) && reg.all_of<GC::Enemy>(entiB)) {
+          continue;
+        } else if (reg.all_of<GC::Enemy>(entiA) &&
+                   reg.all_of<GC::BalaEnemy>(entiB)) {
+          continue;
+        }
+        if ((reg.all_of<GC::BalaPlayer>(entiA) &&
+             reg.all_of<GC::BalaEnemy>(entiB)) ||
+            (reg.all_of<GC::BalaEnemy>(entiA) &&
+             reg.all_of<GC::BalaPlayer>(entiB))) {
+          continue;
+        }
+
         colA.isColliding = true;
         colB.isColliding = true;
       }

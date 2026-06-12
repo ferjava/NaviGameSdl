@@ -24,7 +24,10 @@ void MainScene::OnUpdate(float dt) {
   const bool *keys = SDL_GetKeyboardState(NULL);
   if (keys[SDL_SCANCODE_ESCAPE])
     OnExit();
+
+  Sistema::IA::GeneraBalas(_registro, dt);
   Sistema::Movimiento(_registro, dt);
+
   Sistema::Entrada_Teclado(_registro, dt);
   Sistema::Colisones(_registro);
   Sistema::Animaciones(_registro, dt);

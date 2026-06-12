@@ -9,6 +9,7 @@ namespace Factory {
 entt::entity createPlayer(entt::registry &reg, GameContext &ctx);
 entt::entity createVersionText(entt::registry &reg, GameContext &ctx);
 entt::entity creatBulletPlayer(entt::registry &reg, GameContext &ctx);
+entt::entity creatBulletEnemy(entt::registry &reg, GameContext &ctx);
 entt::entity createEnemy(entt::registry &reg, GameContext &ctx);
 entt::entity createExplosion(entt::registry &reg, GameContext &ctx);
 void createGroupEnemysStraight(

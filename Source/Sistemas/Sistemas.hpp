@@ -16,5 +16,9 @@ void Frontera(entt::registry &reg,
 
 void Colisones(entt::registry &reg);
 void Animaciones(entt::registry &reg, float dt);
+namespace IA {
+void GeneraBalas(entt::registry &reg, float dt);
+
+}
 
 } // namespace Sistema

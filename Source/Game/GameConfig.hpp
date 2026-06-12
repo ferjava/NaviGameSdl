@@ -22,8 +22,12 @@ inline float VELOCIDAD_X = 300.0f;
 constexpr float MOVE_RIGHT = (6 * Game::Enemy::TEXTURE_W) + 400.0f;
 constexpr float MOVE_LEFT = (0 * Game::Enemy::TEXTURE_W) + 400.0f;
 namespace Straight {
-constexpr int Grupo = 6; //< determina cuantos iran en un grupo
-}
+constexpr int Grupo = 6;              //< determina cuantos iran en un grupo
+constexpr float TIME_TO_SHOOT = 1.0f; // tiempo con para lanzar dado
+constexpr int VALOR_MAX_DISPARO = 3;  // valor que comparamos con un dado de 10
+constexpr float VELOCIDAD_BALA = 100.0f;
+constexpr float TIME_DO_SHOOT = 2.0f; // Tiempo para volver a disparar
+} // namespace Straight
 } // namespace Enemy
 namespace Bala {
 

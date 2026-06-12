@@ -7,6 +7,6 @@
 > añadiremos la acción de disparo a los enemigos
 
 - [V] Crear array de enemigos
-- [] Añadir la acción de disparo a los enemigos
+- [v] Añadir la acción de disparo a los enemigos
 - [] Añadir acciones al movimiento de las naves
 - [] Depuración y comprobación de memoria

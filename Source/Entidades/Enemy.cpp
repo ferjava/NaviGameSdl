@@ -16,6 +16,13 @@ void colisionEnemy(entt::registry &reg, entt::entity &entidad,
 
   destroyer.push_back(entidad);
 }
+void unabala(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {
+  auto bala = Factory::creatBulletEnemy(reg, ctx);
+  auto &pos = reg.get<GC::Posicion>(bala);
+  pos = reg.get<GC::Posicion>(entidad);
+  pos.X = pos.X + Game::Enemy::TEXTURE_W / 2;
+  pos.Y = pos.Y + Game::Enemy::TEXTURE_H / 2;
+}
 entt::entity Factory::createEnemy(entt::registry &reg, GameContext &ctx) {
   // Cargamos el archivo de la imagen del enemigo
   auto sprite = ctx.tm->getTexture("assets/images/enemigos.png");
@@ -50,6 +57,8 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx) {
     reg.emplace<GC::Velocidad>(nave_enemiga, Game::Enemy::VELOCIDAD_X, 0.0f);
     reg.emplace<GC::Sprite>(nave_enemiga, sprite, origen, desti);
     reg.emplace<GC::Collidable>(nave_enemiga, false, desti, colisionEnemy);
+    reg.emplace<IA::Dispara>(nave_enemiga, Game::Enemy::Straight::TIME_TO_SHOOT,
+                             Game::Enemy::Straight::VALOR_MAX_DISPARO, unabala);
     reg.emplace<GC::Enemy>(nave_enemiga);
   }
 }
