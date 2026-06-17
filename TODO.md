@@ -8,5 +8,6 @@
 
 - [V] Crear array de enemigos
 - [v] Añadir la acción de disparo a los enemigos
+- [V] Generar oleadas de enemigos
 - [] Añadir acciones al movimiento de las naves
 - [] Depuración y comprobación de memoria
