@@ -58,7 +58,13 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   float vel_Y;
   int eje_X;
   int eje_Y;
-  enum eje { LESSTEXTURA = -1, NOTEXTURA = 0, ADDTEXTURA = 1 };
+  enum eje {
+    LESSTEXTURA = -1,
+    NOTEXTURA = 0,
+    ADDTEXTURA = 1
+  }; // Multiplicando por la Textura hacamos que las naves se sigan unas a otras
+  // posx = posx + TEXTURA*eje (LESS resta Textura en ese eje , NOTeXTURA no add
+  // TEXTURA En ese je ,ADD add textura en ese eje  )
   if (pos_salida == 0) {
     SDL_Log("ERROR NO PUNTO DE SALIDA ");
     return;
