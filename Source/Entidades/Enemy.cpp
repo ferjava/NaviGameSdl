@@ -56,6 +56,9 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   float pos_Y;
   float vel_X;
   float vel_Y;
+  int eje_X;
+  int eje_Y;
+  enum eje { LESSTEXTURA = -1, NOTEXTURA = 0, ADDTEXTURA = 1 };
   if (pos_salida == 0) {
     SDL_Log("ERROR NO PUNTO DE SALIDA ");
     return;
@@ -63,7 +66,9 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   // SALIDA  CENTRO_IZQUIEDA
   if (pos_salida == 1) {
     pos_X = 0.0f; //-(Game::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    eje_X = eje::LESSTEXTURA;
     pos_Y = ctx.pantalla.h / 3;
+    eje_Y = eje::NOTEXTURA;
     vel_X = VELOCIDAD_X;
     vel_Y = 0.0f;
     origen.x = MOVE_RIGHT;
@@ -71,8 +76,10 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   }
   if (pos_salida == 2) {
 
-    pos_X = 0.0f; //- (Game::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    pos_X = 0.0f; //- (Game ::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    eje_X = eje::LESSTEXTURA;
     pos_Y = 0.0f; //- (Game::Enemy::TEXTURE_H + Game::Enemy::TEXTURE_H);
+    eje_Y = eje::LESSTEXTURA;
     vel_X = VELOCIDAD_X;
     vel_Y = VELOCIDAD_Y;
     // Corresponde al elemento 15 del spritesheet  (x 6 , y 3 )
@@ -82,7 +89,9 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   if (pos_salida == 3) {
 
     pos_X = ctx.pantalla.w / 2 - Game::Enemy::TEXTURE_W;
+    eje_X = eje::NOTEXTURA;
     pos_Y = 0.0f;
+    eje_Y = eje::LESSTEXTURA;
     vel_X = 0.0f;
     vel_Y = VELOCIDAD_Y;
     origen.x = MOVE_CENTER;                //(x=3 en spritesheet)
@@ -91,7 +100,9 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   if (pos_salida == 4) {
 
     pos_X = ctx.pantalla.w / 2 + Game::Enemy::TEXTURE_W;
+    eje_X = eje::NOTEXTURA;
     pos_Y = 0.0f; //-(Game::Enemy::TEXTURE_H + Game::Enemy::TEXTURE_H);
+    eje_Y = eje::LESSTEXTURA;
     vel_X = 0.0f;
     vel_Y = VELOCIDAD_Y;
     origen.x = MOVE_CENTER;                //(x=3 en spritesheet)
@@ -100,15 +111,20 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   if (pos_salida == 5) {
 
     pos_X = ctx.pantalla.w + (Game::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    eje_X = eje::ADDTEXTURA;
     pos_Y = 0.0f; //-(Game::Enemy::TEXTURE_H + Game::Enemy::TEXTURE_H);
+    eje_Y = eje::LESSTEXTURA;
     vel_X = +VELOCIDAD_X;
     vel_Y = +VELOCIDAD_Y;
     origen.x = MOVE_LEFT;                  // x= 0 primero del spritesheet
     origen.y = Game::Enemy::TEXTURE_H * 3; // y= 3 fila 3
   }
   if (pos_salida == 6) {
-    pos_X = ctx.pantalla.w + (Game::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    pos_X =
+        ctx.pantalla.w; // (Game::Enemy::TEXTURE_W + Game::Enemy::TEXTURE_W);
+    eje_X = eje::ADDTEXTURA;
     pos_Y = ctx.pantalla.h / 3;
+    eje_Y = eje::NOTEXTURA;
     vel_X = +VELOCIDAD_X;
     vel_Y = 0.0f;
     origen.x = MOVE_LEFT;
@@ -118,9 +134,9 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
   SDL_FRect desti{0.0f, 0.0f, origen.w * 2, origen.h * 2};
   for (int i = 0; i < Grupo; i++) {
     auto nave_enemiga = reg.create();
-    reg.emplace<GC::Posicion>(nave_enemiga,
-                              pos_X = pos_X + Game::Enemy::TEXTURE_W,
-                              pos_Y = pos_Y + Game::Enemy::TEXTURE_H);
+    reg.emplace<GC::Posicion>(
+        nave_enemiga, pos_X = pos_X + (2 * Game::Enemy::TEXTURE_W * eje_X),
+        pos_Y = pos_Y + (2 * Game::Enemy::TEXTURE_H * eje_Y));
 
     reg.emplace<GC::Velocidad>(nave_enemiga, vel_X, vel_Y);
     reg.emplace<GC::Sprite>(nave_enemiga, sprite, origen, desti);
