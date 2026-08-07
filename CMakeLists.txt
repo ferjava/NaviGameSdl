@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.3)
 set(GAME_NAME NaviGameSDL)
 project(${GAME_NAME}
-        VERSION 0.0.07
+        VERSION 0.0.08
         DESCRIPTION "Creacion de un juego de naves "
 )
 #Ponemos en modo debug

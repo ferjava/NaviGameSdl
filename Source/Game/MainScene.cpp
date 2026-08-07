@@ -13,6 +13,7 @@ float next_oleada = 0.0f;
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dado(1, 6);
+entt::entity puntuacion;
 MainScene::MainScene(NaviGame *game) : _game(game) {}
 
 bool MainScene::OnInit() {
@@ -41,12 +42,17 @@ void MainScene::OnUpdate(float dt) {
   Sistema::Entrada_Teclado(_registro, dt);
   Sistema::Colisones(_registro);
   Sistema::Animaciones(_registro, dt);
+  puntuacion = Factory::createScoreText(_registro, NaviGame::ctx);
   Sistema::Frontera(_registro, NaviGame::ctx.pantalla);
 }
 void MainScene::OnRender(SDL_Renderer *renderer) {
 
   renderer = NaviGame::ctx.render;
   Sistema::Dibujado(_registro, renderer);
+  // Se necesita borrar el texto para volver a crearlo
+  if (_registro.valid(puntuacion)) {
+    _registro.destroy(puntuacion);
+  }
 }
 void MainScene::OnExit() {
   // Liberamos los punteros

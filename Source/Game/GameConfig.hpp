@@ -14,6 +14,7 @@ inline float VELOCIDAD_X = 100.0f;
 constexpr float SPEED = 300.0f; // Velocidad de movimiento al pulsar el teclado
 
 inline std::vector<float> ANIMACION = {0, 100, 200, 300, 400, 500, 600};
+inline int SCORE = 0;
 } // namespace Player
 namespace Enemy {
 

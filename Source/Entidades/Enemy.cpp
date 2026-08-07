@@ -13,7 +13,7 @@ void colisionEnemy(entt::registry &reg, entt::entity &entidad,
   auto exploent = Factory::createExplosion(reg, ctx);
   auto &pos = reg.get<GC::Posicion>(exploent);
   pos = reg.get<GC::Posicion>(entidad);
-
+  Game::Player::SCORE = Game::Player::SCORE + 200;
   destroyer.push_back(entidad);
 }
 void unabala(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {

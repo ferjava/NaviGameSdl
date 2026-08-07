@@ -15,4 +15,5 @@ entt::entity createExplosion(entt::registry &reg, GameContext &ctx);
 void createGroupEnemysStraight(
     entt::registry &reg, GameContext &ctx,
     int salida); // Crea grupos de enemigos del grupo straight
+entt::entity createScoreText(entt::registry &reg, GameContext &ctx);
 } // namespace Factory

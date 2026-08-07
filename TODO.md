@@ -1,13 +1,13 @@
 # TODO
 
-## VERSION 0.0.07
+## VERSION 0.0.08
 
 > [!NOTE]
-> Crear un array de enemigos que se sigan uno al otro .También
-> añadiremos la acción de disparo a los enemigos
+> El objetivo es mostrar un puntuación del jugador en la pantalla ,
+> en la parte superior izquierda .
 
-- [V] Crear array de enemigos
-- [v] Añadir la acción de disparo a los enemigos
-- [V] Generar oleadas de enemigos
-- [V] Añadir acciones al movimiento de las naves
-- [V] Depuración y comprobación de memoria
+- [] Cada nave destruida muestra un valor de 200 pts
+- [V] Mostrar la puntuación del jugador en la parte superior centro
+- [] Colocar un limite de oleadas. Para poner fin al level
+- [] Preparar el numero de vidas del jugador
+- [] Depuración y comprobación de memoria
