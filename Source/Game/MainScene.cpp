@@ -14,6 +14,7 @@ std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dado(1, 6);
 entt::entity puntuacion;
+int oleada_actual = 0;
 MainScene::MainScene(NaviGame *game) : _game(game) {}
 
 bool MainScene::OnInit() {
@@ -32,9 +33,13 @@ void MainScene::OnUpdate(float dt) {
     OnExit();
   // temporizador oleada
   next_oleada += dt;
-  if (next_oleada >= Game::TIME_OLEADA) {
-    next_oleada = 0.0f; // reinicio;
-    Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, dado(gen));
+  // crear un limite de oleadas
+  if (oleada_actual < Game::NUMERO_DE_OLEADAS) {
+    if (next_oleada >= Game::TIME_OLEADA) {
+      next_oleada = 0.0f; // reinicio;
+      Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, dado(gen));
+      oleada_actual++;
+    }
   }
   Sistema::IA::GeneraBalas(_registro, dt);
   Sistema::Movimiento(_registro, dt);

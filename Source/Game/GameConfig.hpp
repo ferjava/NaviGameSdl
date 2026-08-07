@@ -6,6 +6,7 @@
  * */
 namespace Game {
 constexpr float TIME_OLEADA = 5.0f;
+constexpr int NUMERO_DE_OLEADAS = 30;
 namespace Player {
 
 constexpr float TEXTURE_W = 90.0f;
