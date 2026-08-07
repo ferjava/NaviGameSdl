@@ -23,5 +23,7 @@ struct Dispara {
   bool ha_disparado = false;
   float lanzadado = 0.0f;
 };
-
+struct Live {
+  bool is_live = true;
+};
 } // namespace IA

@@ -9,12 +9,17 @@
 
 void colisionEnemy(entt::registry &reg, entt::entity &entidad,
                    std::vector<entt::entity> &destroyer, GameContext &ctx) {
-  SDL_Log(" Colsion en Enemigo");
-  auto exploent = Factory::createExplosion(reg, ctx);
-  auto &pos = reg.get<GC::Posicion>(exploent);
-  pos = reg.get<GC::Posicion>(entidad);
-  Game::Player::SCORE = Game::Player::SCORE + 200;
-  destroyer.push_back(entidad);
+
+  auto &islive = reg.get<IA::Live>(entidad);
+  if (islive.is_live) {
+    SDL_Log(" Colsion en Enemigo");
+    auto exploent = Factory::createExplosion(reg, ctx);
+    auto &pos = reg.get<GC::Posicion>(exploent);
+    pos = reg.get<GC::Posicion>(entidad);
+    Game::Player::SCORE += 200;
+    islive.is_live = false;
+    destroyer.push_back(entidad);
+  }
 }
 void unabala(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {
   auto bala = Factory::creatBulletEnemy(reg, ctx);
@@ -149,6 +154,7 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
     reg.emplace<GC::Collidable>(nave_enemiga, false, desti, colisionEnemy);
     reg.emplace<IA::Dispara>(nave_enemiga, TIME_TO_SHOOT, VALOR_MAX_DISPARO,
                              unabala);
+    reg.emplace<IA::Live>(nave_enemiga);
     reg.emplace<GC::Enemy>(nave_enemiga);
   }
 }
