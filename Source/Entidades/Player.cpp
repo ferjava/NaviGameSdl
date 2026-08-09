@@ -25,7 +25,7 @@ void colisionPlayer(entt::registry &reg, entt::entity &entidad,
 
       auto &navepos = reg.get<GC::Posicion>(entidad);
       auto &choque = reg.get<GC::Collidable>(entidad);
-      navepos.X = ctx.pantalla.w / 2 + Game::Player::TEXTURE_W;
+      navepos.X = ctx.pantalla.w / 2 - Game::Player::TEXTURE_W / 2;
       navepos.Y = ctx.pantalla.h + Game::Player::TEXTURE_H;
       // islive.is_live = true;
     }
