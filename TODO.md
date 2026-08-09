@@ -6,8 +6,8 @@
 > El objetivo es mostrar un puntuación del jugador en la pantalla ,
 > en la parte superior izquierda .
 
-- [] Cada nave destruida muestra un valor de 200 pts
+-  [V] Cada nave destruida muestra un valor de 200 pts
 - [V] Mostrar la puntuación del jugador en la parte superior centro
 - [V] Colocar un limite de oleadas. Para poner fin al level
-- [] Preparar el numero de vidas del jugador
-- [] Depuración y comprobación de memoria
+- [V] Preparar el numero de vidas del jugador
+- [V] Depuración y comprobación de memoria

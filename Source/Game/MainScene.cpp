@@ -42,6 +42,7 @@ void MainScene::OnUpdate(float dt) {
     }
   }
   Sistema::IA::GeneraBalas(_registro, dt);
+  Sistema::IA::PlayerVida(_registro, dt, NaviGame::ctx);
   Sistema::Movimiento(_registro, dt);
 
   Sistema::Entrada_Teclado(_registro, dt);

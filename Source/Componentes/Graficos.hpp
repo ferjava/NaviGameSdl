@@ -25,6 +25,7 @@ struct Collidable {
   std::function<void(entt::registry &reg, entt::entity &enitidad,
                      std::vector<entt::entity> &destructor, GameContext &ctx)>
       alcolisonar;
+  bool isCollidable = true;
 };
 
 struct Animacion {

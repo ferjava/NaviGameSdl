@@ -25,5 +25,7 @@ struct Dispara {
 };
 struct Live {
   bool is_live = true;
+  int Heal = 0;  // por defecto
+  int lives = 3; // Por defecto
 };
 } // namespace IA
