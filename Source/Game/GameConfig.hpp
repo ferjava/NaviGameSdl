@@ -8,7 +8,7 @@ namespace Game {
 constexpr float TIME_OLEADA = 5.0f;
 constexpr int NUMERO_DE_OLEADAS = 30;
 namespace Player {
-
+constexpr int LIVES = 3;
 constexpr float TEXTURE_W = 90.0f;
 constexpr float TEXTURE_H = 90.0f;
 inline float VELOCIDAD_X = 100.0f;

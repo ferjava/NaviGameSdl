@@ -22,12 +22,19 @@ bool MainScene::OnInit() {
   _texture.Init(NaviGame::ctx.render);
   NaviGame::ctx.tm = &_texture;
   Factory::createPlayer(_registro, NaviGame::ctx);
+  Factory::createIconVida(_registro, NaviGame::ctx);
   // Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, 1);
+
   Factory::createVersionText(_registro, NaviGame::ctx);
   return true;
 }
 void MainScene::OnUpdate(float dt) {
-
+  // Limpiamos las entidades para eliminar
+  for (auto enti : NaviGame::ctx.elimina_entidad) {
+    if (_registro.valid(enti)) {
+      _registro.destroy(enti);
+    }
+  }
   const bool *keys = SDL_GetKeyboardState(NULL);
   if (keys[SDL_SCANCODE_ESCAPE])
     OnExit();

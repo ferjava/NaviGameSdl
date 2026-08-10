@@ -7,4 +7,5 @@ struct Player {};     // Entidad Jugador
 struct BalaPlayer {}; // Entidad bala de Jugador;
 struct BalaEnemy {};  // Entidad bala enemiga
 struct Enemy {};      // Entidad Enemigo
+struct IconPlayer {}; // Iconos de vida
 } // namespace GC

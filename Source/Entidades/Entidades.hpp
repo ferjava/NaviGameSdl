@@ -17,6 +17,7 @@ void createGroupEnemysStraight(
     entt::registry &reg, GameContext &ctx,
     int salida); // Crea grupos de enemigos del grupo straight
 entt::entity createScoreText(entt::registry &reg, GameContext &ctx);
+void createIconVida(entt::registry &reg, GameContext &ctx);
 } // namespace Factory
 namespace Efecto {
 void Blink(SDL_Texture *sprite, float time, GameContext &ctx);

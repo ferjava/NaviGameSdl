@@ -15,20 +15,42 @@ void Sistema::IA::PlayerVida(entt::registry &reg, float dt, GameContext ctx) {
     auto &pos = view.get<GC::Posicion>(enti);
     auto &choque = view.get<GC::Collidable>(enti);
     auto &sp = view.get<GC::Sprite>(enti);
+
     if (!live.is_live) {
       livestart += dt;
       if (livestart >= 2.0f) {
         SDL_SetTextureAlphaMod(sp.sprite.get(), 255);
-        choque.isCollidable = true;
         live.is_live = true;
-        livestart = 0.0f;
         vel.Vx = Game::Player::SPEED;
         vel.Vy = Game::Player::SPEED;
+        // choque.isCollidable = true;
+        livestart = 0.0f;
       } else {
         Efecto::Blink(sp.sprite.get(), 0.2f, ctx);
         choque.isCollidable = false;
         vel.Vx = 0.0f;
         vel.Vy = -200.0f;
+      }
+
+    } else if (live.is_live && !choque.isCollidable) {
+      livestart += dt;
+      if (livestart >= 0.5) {
+        SDL_SetTextureAlphaMod(sp.sprite.get(), 255);
+        choque.isCollidable = true;
+        livestart = 0.0f;
+      } else {
+        Efecto::Blink(sp.sprite.get(), 0.2f, ctx);
+      }
+    }
+
+    auto view_icon = reg.view<GC::Posicion, GC::IconPlayer, GC::Sprite>();
+    for (auto icon_enty : view_icon) {
+      auto &pos = reg.get<GC::Posicion>(icon_enty);
+      auto &sp = reg.get<GC::Sprite>(icon_enty);
+      if (pos.X == (sp.sprite->w * 2) * (live.lives - 1)) {
+        if (reg.valid(icon_enty)) {
+          reg.destroy(icon_enty);
+        }
       }
     }
   }

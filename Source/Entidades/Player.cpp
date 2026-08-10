@@ -45,6 +45,6 @@ entt::entity Factory::createPlayer(entt::registry &reg, GameContext &ctx) {
   reg.emplace<GC::Sprite>(nave, sprite, sprite_src, sprite_dest);
   reg.emplace<GC::Collidable>(nave, false, sprite_dest, colisionPlayer);
   reg.emplace<GC::Player>(nave);
-  reg.emplace<IA::Live>(nave);
+  reg.emplace<IA::Live>(nave, Game::Player::LIVES);
   return nave;
 }

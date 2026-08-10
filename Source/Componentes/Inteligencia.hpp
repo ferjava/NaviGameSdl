@@ -24,8 +24,10 @@ struct Dispara {
   float lanzadado = 0.0f;
 };
 struct Live {
+  int lives = 3;
+
+  int Heal = 0; // por defecto
   bool is_live = true;
-  int Heal = 0;  // por defecto
-  int lives = 3; // Por defecto
+  // Por defecto
 };
 } // namespace IA

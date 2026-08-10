@@ -19,6 +19,7 @@ void colisionEnemy(entt::registry &reg, entt::entity &entidad,
     Game::Player::SCORE += 200;
     islive.is_live = false;
     destroyer.push_back(entidad);
+    ctx.elimina_entidad.push_back(entidad);
   }
 }
 void unabala(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {
