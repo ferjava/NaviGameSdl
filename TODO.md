@@ -10,6 +10,6 @@
 - [V] Hacer Efecto (blink) en la nave mientras esta vuelve después de
   memoria
 - [V] Mostrar los iconos de vida en la parte inferior derecha de la pantalla
-- [] Crear una pantalla que nos muestre el mensaje de "Estas Muerto"
+- [V] Crear una pantalla que nos muestre el mensaje de "Estas Muerto"
 - [] Crear una pantalla que al pulsar space inicie el juego
 - [] Depuración y comprobación de memoria

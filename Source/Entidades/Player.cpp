@@ -30,6 +30,7 @@ void colisionPlayer(entt::registry &reg, entt::entity &entidad,
       // islive.is_live = true;
     }
   } else {
+    auto gameover = Factory::createGameOver(reg, ctx);
     destroyer.push_back(entidad);
   }
 }

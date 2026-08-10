@@ -54,4 +54,9 @@ void Sistema::IA::PlayerVida(entt::registry &reg, float dt, GameContext ctx) {
       }
     }
   }
+  auto gameover_view = reg.view<GC::GameOver, GC::Sprite>();
+  for (auto gameover : gameover_view) {
+    auto gameover_sp = gameover_view.get<GC::Sprite>(gameover);
+    Efecto::Blink(gameover_sp.sprite.get(), 0.3f, ctx);
+  }
 }
