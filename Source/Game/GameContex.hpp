@@ -1,4 +1,5 @@
 #pragma once
+#include "../Core/SceneManager.hpp"
 #include "../Core/TextureManager.hpp"
 #include "SDL3/SDL_rect.h"
 #include "entt/entity/fwd.hpp"
@@ -10,4 +11,5 @@ struct GameContext {
   SDL_Renderer *render;
   float *delta_time;
   std::vector<entt::entity> elimina_entidad;
+  SceneManager *director;
 };

@@ -10,3 +10,7 @@ struct Enemy {};      // Entidad Enemigo
 struct IconPlayer {}; // Iconos de vida
 struct GameOver {};   // Gameover
 } // namespace GC
+namespace Title {
+struct TitleImage {};
+struct PressStart {};
+} // namespace Title

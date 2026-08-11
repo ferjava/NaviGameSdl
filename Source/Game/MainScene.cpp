@@ -4,6 +4,7 @@
 #include "../Sistemas/Sistemas.hpp"
 #include "GameConfig.hpp"
 #include "GameContex.hpp"
+#include "MainScene.hpp"
 #include "NaviGame.hpp"
 #include "SDL3/SDL_keyboard.h"
 #include "SDL3/SDL_render.h"
@@ -18,14 +19,13 @@ int oleada_actual = 0;
 MainScene::MainScene(NaviGame *game) : _game(game) {}
 
 bool MainScene::OnInit() {
-  // Creamos una entityi)
+  // Creamos una entity)
   _texture.Init(NaviGame::ctx.render);
   NaviGame::ctx.tm = &_texture;
-  Factory::createPlayer(_registro, NaviGame::ctx);
-  Factory::createIconVida(_registro, NaviGame::ctx);
-  // Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, 1);
+  // Retraso para dar ttiemp a la cargta
+  Game::Player::SCORE = 0.0f;
+  OnStart();
 
-  Factory::createVersionText(_registro, NaviGame::ctx);
   return true;
 }
 void MainScene::OnUpdate(float dt) {
@@ -37,7 +37,7 @@ void MainScene::OnUpdate(float dt) {
   }
   const bool *keys = SDL_GetKeyboardState(NULL);
   if (keys[SDL_SCANCODE_ESCAPE])
-    OnExit();
+    OnMenuIntro();
   // temporizador oleada
   next_oleada += dt;
   // crear un limite de oleadas
@@ -67,8 +67,15 @@ void MainScene::OnRender(SDL_Renderer *renderer) {
     _registro.destroy(puntuacion);
   }
 }
-void MainScene::OnExit() {
-  // Liberamos los punteros
-  _game->getEngine()->Exit();
+void MainScene::OnMenuIntro() {
+  if (!NaviGame::ctx.director->isEmpty())
+    NaviGame::ctx.director->Pop();
 }
+void MainScene::OnExit() {}
 void MainScene::OnCleanUp() {}
+void MainScene::OnStart() {
+  Factory::createIconVida(_registro, NaviGame::ctx);
+  Factory::createPlayer(_registro, NaviGame::ctx);
+  // Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, 1);
+  Factory::createVersionText(_registro, NaviGame::ctx);
+}

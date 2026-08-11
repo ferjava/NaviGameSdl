@@ -10,7 +10,8 @@ public:
   MainScene(NaviGame *game);
   // IScene
   bool OnInit() override;
-
+  void OnStart();
+  void OnMenuIntro();
   void OnUpdate(float dt) override;
   void OnRender(SDL_Renderer *render) override;
   void OnCleanUp() override;

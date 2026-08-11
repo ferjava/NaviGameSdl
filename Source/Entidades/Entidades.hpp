@@ -5,6 +5,7 @@
  **/
 #include "../Game/GameContex.hpp"
 #include "SDL3/SDL_render.h"
+#include "Title/Entidades.hpp"
 #include "entt/entity/fwd.hpp"
 namespace Factory {
 entt::entity createPlayer(entt::registry &reg, GameContext &ctx);

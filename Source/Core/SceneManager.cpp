@@ -13,6 +13,7 @@ void SceneManager::Pop() {
   if (!stack.empty()) {
     stack.back()->OnExit();
     stack.pop_back();
+    stack.back()->OnInit();
   }
 }
 /**
@@ -20,9 +21,11 @@ void SceneManager::Pop() {
  *
  **/
 void SceneManager::Change(std::unique_ptr<IScene> newscene) {
-  while (!stack.empty())
+  while (!stack.empty()) {
     Pop();
+  }
   Push(std::move(newscene));
+  stack.back()->OnInit();
 }
 /**
  * @brief: Retorna la scene que apunta el vector ,si no esta vacio

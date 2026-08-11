@@ -10,7 +10,7 @@ private:
 
 public:
   void Push(std::unique_ptr<IScene>
-                newscene); ///< Añade una escena enima de la anterior
+                newscene); ///< Añade una escena encima de la anterior
   void Pop();              ///< Quita la escena nueva y vuelve a class anterior
   void Change(std::unique_ptr<IScene> newscene);
   ///< Cambia radicalmente de scene
