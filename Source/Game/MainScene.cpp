@@ -74,8 +74,8 @@ void MainScene::OnMenuIntro() {
 void MainScene::OnExit() {}
 void MainScene::OnCleanUp() {}
 void MainScene::OnStart() {
+
+  Factory::createVersionText(_registro, NaviGame::ctx);
   Factory::createIconVida(_registro, NaviGame::ctx);
   Factory::createPlayer(_registro, NaviGame::ctx);
-  // Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, 1);
-  Factory::createVersionText(_registro, NaviGame::ctx);
 }

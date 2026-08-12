@@ -25,21 +25,22 @@ void TitleScene::OnUpdate(float dt) {
   const bool *keys = SDL_GetKeyboardState(NULL);
   wait += dt;
   if (wait >= 0.5f) {
-    if (keys[SDL_SCANCODE_ESCAPE])
+    if (keys[SDL_SCANCODE_ESCAPE]) {
 
+      _game->getEngine()->Exit();
       OnExit();
+    }
     if (keys[SDL_SCANCODE_SPACE]) {
       // Aqui iniciamos el juego
       // 1 Creamos la escena
       NaviGame::ctx.director->Push(std::move(_mainscene));
-      NaviGame::ctx.director->Current()->OnInit();
     }
   }
   // Hacemos blink en texto
   auto view = _registro.view<Title::PressStart, GC::Sprite>();
   for (auto enti : view) {
     auto &sp = view.get<GC::Sprite>(enti);
-    Efecto::Blink(sp.sprite.get(), 0.3f, NaviGame::ctx);
+    Efecto::Blink(sp.sprite.get(), 0.5f, NaviGame::ctx, 1);
   }
 }
 void TitleScene::OnRender(SDL_Renderer *render) {
@@ -49,6 +50,6 @@ void TitleScene::OnRender(SDL_Renderer *render) {
 }
 void TitleScene::OnExit() {
   // Salimos del juego
-  _game->getEngine()->Exit();
+  // _game->getEngine()->Exit();
 }
 void TitleScene::OnCleanUp() {}

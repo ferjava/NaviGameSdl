@@ -18,7 +18,8 @@ void NaviGame::OnInit(Engine &engine) {
   ctx.director = &_scenedirector;
   auto titlescene = std::make_unique<TitleScene>(this);
   _scenedirector.Push(std::move(titlescene));
-  _scenedirector.Current()->OnInit();
+  while (!_scenedirector.Current()->OnInit()) {
+  }
 }
 void NaviGame::OnUpdate(float deltaTime) {
 

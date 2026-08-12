@@ -22,5 +22,5 @@ void createIconVida(entt::registry &reg, GameContext &ctx);
 entt::entity createGameOver(entt::registry &reg, GameContext &ctx);
 } // namespace Factory
 namespace Efecto {
-void Blink(SDL_Texture *sprite, float time, GameContext &ctx);
+void Blink(SDL_Texture *sprite, float time, GameContext &ctx, int alpha = 100);
 } // namespace Efecto
