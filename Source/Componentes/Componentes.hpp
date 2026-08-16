@@ -4,4 +4,5 @@
 #include "../Componentes/GameTags.hpp"
 #include "../Componentes/Graficos.hpp"
 #include "../Componentes/Inteligencia.hpp"
+#include "../Componentes/Utils.hpp"
 #include "../Componentes/transformadas.hpp"

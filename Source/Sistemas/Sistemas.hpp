@@ -17,9 +17,14 @@ void Frontera(entt::registry &reg,
 void Colisones(entt::registry &reg);
 void Animaciones(entt::registry &reg, float dt);
 namespace IA {
+void UpdateSystemIA(entt::registry &reg, float dt, GameContext &ctx);
 void GeneraBalas(entt::registry &reg, float dt);
 void PlayerVida(entt::registry &reg, float dt,
                 GameContext ctx); // Funcio para las vidas del jugador
+void MoviAutomatico(
+    entt::registry &reg, float dt,
+    GameContext ctx); // Se encarga del movimiento entidades (IA::Movimiento)
+void UpdateTimerSystem(entt::registry &reg, float dt);
 } // namespace IA
 
 } // namespace Sistema

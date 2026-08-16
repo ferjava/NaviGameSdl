@@ -42,6 +42,7 @@ void TextureManager::ClearUnused() {
 // Añadimos una textura creada por nosotros al textureManager (Texto , circulos
 // ,cuadrados )
 void TextureManager::Add(SDL_Texture *texture, const std::string &name) {
+
   if (texture != nullptr) {
     std::shared_ptr<SDL_Texture> smartTex(texture, SDL_DestroyTexture);
     _textures[name] = smartTex;

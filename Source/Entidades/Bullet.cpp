@@ -29,8 +29,8 @@ entt::entity Factory::creatBulletPlayer(entt::registry &reg, GameContext &ctx) {
   return bala;
 }
 
-entt::entity Factory::creatBulletEnemy(entt::registry &reg, GameContext &ctx) {
-
+entt::entity Factory::createBullet(entt::registry &reg, GameContext &ctx,
+                                   GC::Velocidad direc) {
   auto _balasp = ctx.tm->getTexture("assets/images/bala.png");
   if (!_balasp)
     SDL_Log("Error al cargar la imagen de bala ");
@@ -39,7 +39,7 @@ entt::entity Factory::creatBulletEnemy(entt::registry &reg, GameContext &ctx) {
   auto bala = reg.create();
   reg.emplace<GC::Sprite>(bala, _balasp, src, dest);
   reg.emplace<GC::Posicion>(bala, 0.0f, 0.0f);
-  reg.emplace<GC::Velocidad>(bala, 0.0f, Game::Enemy::Straight::VELOCIDAD_BALA);
+  reg.emplace<GC::Velocidad>(bala, direc.Vx, direc.Vy);
   reg.emplace<GC::Collidable>(bala, false, dest, colosion_bala);
   reg.emplace<GC::BalaEnemy>(bala);
 

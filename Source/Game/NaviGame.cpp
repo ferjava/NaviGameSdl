@@ -25,6 +25,7 @@ void NaviGame::OnUpdate(float deltaTime) {
 
   ctx.delta_time = &deltaTime;
   _scenedirector.Current()->OnUpdate(deltaTime);
+  _scenedirector.ChangePending();
 }
 
 void NaviGame::OnRender(SDL_Renderer *renderer) {

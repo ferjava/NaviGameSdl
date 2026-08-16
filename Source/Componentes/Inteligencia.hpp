@@ -5,7 +5,9 @@
 /// aciones
 #include "../Game/GameContex.hpp"
 #include "entt/entity/fwd.hpp"
+#include "transformadas.hpp"
 #include <functional>
+#include <vector>
 namespace IA {
 struct Dispara {
 
@@ -29,5 +31,15 @@ struct Live {
   int Heal = 0; // por defecto
   bool is_live = true;
   // Por defecto
+};
+//@breif : Moviment es un componente que determina el lugar
+// donde se movera la entidad de forma automatica
+//@param : destino es un vector que contendra  las direcciones hasta donce
+// se desplazara nuestra nave
+//
+struct Moviment {
+  std::vector<GC::Posicion>
+      destino; /// destinos                   // indice del vector
+  int indice;
 };
 } // namespace IA

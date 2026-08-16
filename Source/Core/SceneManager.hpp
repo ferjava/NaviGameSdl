@@ -7,6 +7,8 @@
 class SceneManager {
 private:
   std::vector<std::unique_ptr<IScene>> stack;
+  std::unique_ptr<IScene> pendiente = nullptr;
+  bool deberiaLimpiar = false;
 
 public:
   void Push(std::unique_ptr<IScene>
@@ -16,5 +18,6 @@ public:
   ///< Cambia radicalmente de scene
   IScene *Current(); ///< Scene actual
   bool isEmpty() const { return stack.empty(); };
+  void ChangePending();
 };
 #endif //__SCENEMANAGER_HPP__

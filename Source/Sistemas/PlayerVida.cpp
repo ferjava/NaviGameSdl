@@ -26,7 +26,7 @@ void Sistema::IA::PlayerVida(entt::registry &reg, float dt, GameContext ctx) {
         // choque.isCollidable = true;
         livestart = 0.0f;
       } else {
-        Efecto::Blink(sp.sprite.get(), 0.2f, ctx);
+        Utils::f_Blink(sp.sprite.get(), 0.2f, *ctx.delta_time);
         choque.isCollidable = false;
         vel.Vx = 0.0f;
         vel.Vy = -200.0f;
@@ -39,7 +39,7 @@ void Sistema::IA::PlayerVida(entt::registry &reg, float dt, GameContext ctx) {
         choque.isCollidable = true;
         livestart = 0.0f;
       } else {
-        Efecto::Blink(sp.sprite.get(), 0.2f, ctx);
+        Utils::f_Blink(sp.sprite.get(), 0.2f, *ctx.delta_time);
       }
     }
 
@@ -57,6 +57,6 @@ void Sistema::IA::PlayerVida(entt::registry &reg, float dt, GameContext ctx) {
   auto gameover_view = reg.view<GC::GameOver, GC::Sprite>();
   for (auto gameover : gameover_view) {
     auto gameover_sp = gameover_view.get<GC::Sprite>(gameover);
-    Efecto::Blink(gameover_sp.sprite.get(), 0.3f, ctx);
+    Utils::f_Blink(gameover_sp.sprite.get(), 0.3f, *ctx.delta_time);
   }
 }

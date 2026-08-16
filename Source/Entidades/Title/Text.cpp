@@ -16,6 +16,7 @@ entt::entity Factory::Title::createPress(entt::registry &reg,
     auto presspace = SDL_CreateTextureFromSurface(NaviGame::ctx.render, text);
     SDL_SetTextureBlendMode(presspace, SDL_BLENDMODE_BLEND);
     NaviGame::ctx.tm->Add(presspace, "start");
+
     SDL_DestroySurface(text);
 
     if (!presspace) {

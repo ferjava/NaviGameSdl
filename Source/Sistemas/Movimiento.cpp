@@ -1,10 +1,13 @@
 #include "../Componentes/Componentes.hpp"
+#include "../Entidades/Entidades.hpp"
 #include "../Game/GameConfig.hpp"
 #include "../Game/NaviGame.hpp"
 #include "Sistemas.hpp"
 #include "entt/entity/fwd.hpp"
 void Sistema::Movimiento(entt::registry &reg, float dt) {
-  auto view = reg.view<GC::Posicion, GC::Velocidad>();
+  auto view = reg.view<GC::Posicion,
+                       GC::Velocidad>(
+      entt::exclude<GC::Raptor>); // Excluye las de movimiento autamitca
   std::vector<entt::entity> EntidadParaDestruir;
   for (auto enti : view) {
     auto &pos = view.get<GC::Posicion>(enti);
@@ -18,6 +21,11 @@ void Sistema::Movimiento(entt::registry &reg, float dt) {
         EntidadParaDestruir.push_back(enti);
       }
     }
+    /*
+    if (reg.all_of<GC::Raptor>(enti)) {
+      Acciones::moveRaptor(reg, NaviGame::ctx, 5.0f);
+    }*/
+
     if (reg.all_of<GC::Enemy>(enti)) {
       if (pos.X <= 0) {
         // TODO: Mueve hacia la derecha

@@ -2,6 +2,7 @@
 
 #include "../Core/IScene.hpp"
 #include "../Core/TextureManager.hpp"
+#include "../Entidades/Utils/Utils.hpp"
 #include "MainScene.hpp"
 #include "NaviGame.hpp"
 #include "SDL3/SDL_events.h"
@@ -26,4 +27,6 @@ private:
   SDL_Event _event;
   entt::registry _registro;
   std::unique_ptr<IScene> _mainscene;
+  Utils::CountDown k_wait, t_blink;
+  Utils::Blink Text_blink;
 };

@@ -9,6 +9,7 @@ struct BalaEnemy {};  // Entidad bala enemiga
 struct Enemy {};      // Entidad Enemigo
 struct IconPlayer {}; // Iconos de vida
 struct GameOver {};   // Gameover
+struct Raptor {};
 } // namespace GC
 namespace Title {
 struct TitleImage {};

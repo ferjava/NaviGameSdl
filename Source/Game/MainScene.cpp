@@ -9,11 +9,7 @@
 #include "SDL3/SDL_keyboard.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_scancode.h"
-#include <random>
 float next_oleada = 0.0f;
-std::random_device rd;
-std::mt19937 gen(rd());
-std::uniform_int_distribution<int> dado(1, 6);
 entt::entity puntuacion;
 int oleada_actual = 0;
 MainScene::MainScene(NaviGame *game) : _game(game) {}
@@ -44,12 +40,15 @@ void MainScene::OnUpdate(float dt) {
   if (oleada_actual < Game::NUMERO_DE_OLEADAS) {
     if (next_oleada >= Game::TIME_OLEADA) {
       next_oleada = 0.0f; // reinicio;
-      Factory::createGroupEnemysStraight(_registro, NaviGame::ctx, dado(gen));
+      Factory::createGroupEnemysStraight(_registro, NaviGame::ctx,
+                                         Utils::Dado(1, 6));
+      if (oleada_actual % 3 == 0 && oleada_actual != 0) {
+        Factory::createEnemyRaptor(_registro, NaviGame::ctx);
+      }
       oleada_actual++;
     }
   }
-  Sistema::IA::GeneraBalas(_registro, dt);
-  Sistema::IA::PlayerVida(_registro, dt, NaviGame::ctx);
+  Sistema::IA::UpdateSystemIA(_registro, dt, NaviGame::ctx);
   Sistema::Movimiento(_registro, dt);
 
   Sistema::Entrada_Teclado(_registro, dt);
@@ -71,10 +70,10 @@ void MainScene::OnMenuIntro() {
   if (!NaviGame::ctx.director->isEmpty())
     NaviGame::ctx.director->Pop();
 }
-void MainScene::OnExit() {}
+void MainScene::OnExit() { _registro.clear(); }
 void MainScene::OnCleanUp() {}
 void MainScene::OnStart() {
-
+  _registro.clear();
   Factory::createVersionText(_registro, NaviGame::ctx);
   Factory::createIconVida(_registro, NaviGame::ctx);
   Factory::createPlayer(_registro, NaviGame::ctx);

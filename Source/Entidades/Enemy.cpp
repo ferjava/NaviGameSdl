@@ -23,7 +23,8 @@ void colisionEnemy(entt::registry &reg, entt::entity &entidad,
   }
 }
 void unabala(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {
-  auto bala = Factory::creatBulletEnemy(reg, ctx);
+  auto velo = GC::Velocidad{0.0f, 200.0f};
+  auto bala = Factory::createBullet(reg, ctx, velo);
   auto &pos = reg.get<GC::Posicion>(bala);
   pos = reg.get<GC::Posicion>(entidad);
   pos.X = pos.X + Game::Enemy::TEXTURE_W / 2;
