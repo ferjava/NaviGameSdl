@@ -7,9 +7,8 @@
 
 void colosion_bala(entt::registry &reg, entt::entity &entidad,
                    std::vector<entt::entity> &destroyer, GameContext &ctx) {
-  SDL_Log("Choque con bala");
+
   destroyer.push_back(entidad);
-  // reg.destroy(entidad);
 }
 
 entt::entity Factory::creatBulletPlayer(entt::registry &reg, GameContext &ctx) {

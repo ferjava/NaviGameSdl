@@ -62,6 +62,9 @@ void Sistema::Colisones(entt::registry &reg) {
                    reg.all_of<GC::BalaEnemy>(entiB)) {
           continue;
         }
+        if (reg.all_of<GC::BalaEnemy>(entiA) &&
+            reg.all_of<GC::BalaEnemy>(entiB))
+          continue;
         if ((reg.all_of<GC::BalaPlayer>(entiA) &&
              reg.all_of<GC::BalaEnemy>(entiB)) ||
             (reg.all_of<GC::BalaEnemy>(entiA) &&
