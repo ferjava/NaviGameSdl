@@ -27,5 +27,5 @@ entt::entity createBullet(entt::registry &reg, GameContext &ctx,
                           GC::Velocidad direccion);
 } // namespace Factory
 namespace Acciones {
-void moveRaptor(entt::registry &reg, GameContext &ctx);
+void moveRaptor(entt::registry &reg, float dt);
 }

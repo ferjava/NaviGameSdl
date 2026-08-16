@@ -9,8 +9,8 @@
 namespace Game {
 constexpr float TIME_OLEADA = 5.0f;
 constexpr int NUMERO_DE_OLEADAS = 30;
-constexpr float MOVIMIENTO_SPEED_X = 0.001f;
-constexpr float MOVIMIENTO_SPEED_Y = 0.001f;
+constexpr float MOVIMIENTO_SPEED_X = 300.0f;
+constexpr float MOVIMIENTO_SPEED_Y = 300.0f;
 constexpr GC::Velocidad VELO(MOVIMIENTO_SPEED_X, MOVIMIENTO_SPEED_Y);
 namespace Player {
 constexpr int LIVES = 3;

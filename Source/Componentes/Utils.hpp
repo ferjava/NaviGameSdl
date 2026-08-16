@@ -15,9 +15,9 @@ struct TimeExpiredTag {};
 ////////////////////////////////
 /// componentes
 struct Temporizador {
-  float tRestante;
   float tDuracion;
   bool Repite = false;
+  float tRestante;
   bool Terminado = false;
   // Opcional callback para ejecutar cuando se termine la cuenta
   std::function<void(entt::entity &enti)> on_timeout = nullptr;

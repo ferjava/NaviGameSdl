@@ -12,10 +12,11 @@ void Sistema::IA::MoviAutomatico(entt::registry &reg, float dt,
       auto &pos = reg.get<GC::Posicion>(enti);  // Cojemos la posicion actual
       auto &vel = reg.get<GC::Velocidad>(enti); // cojemos la direccion que
                                                 // lleva
-      pos.X += vel.Vx * dt;
-      pos.Y += vel.Vy * dt;
+      // pos.X += vel.Vx * dt;
+      // pos.Y += vel.Vy * dt;
       auto &dest = reg.get<::IA::Moviment>(enti); // punto de destino ;
-      bool ha_llegado = Utils::Move_To(pos, dest.destino[dest.indice], vel);
+      bool ha_llegado = Utils::Move_To(pos, dest.destino[dest.indice], vel, dt);
+
       if (ha_llegado) {
         if (dest.indice == dest.destino.size() - 1) {
           // reinciamos
@@ -28,7 +29,9 @@ void Sistema::IA::MoviAutomatico(entt::registry &reg, float dt,
           // Incremeta en el vector
         }
       }
-      Acciones::moveRaptor(reg, ctx);
+      if (reg.all_of<GC::Raptor>(enti)) {
+        // Acciones::moveRaptor(reg, dt);
+      }
     }
   }
 }

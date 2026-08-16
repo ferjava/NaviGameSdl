@@ -35,13 +35,30 @@ void colisionRaptor(entt::registry &reg, entt::entity &entidad,
     auto &explo_pos = reg.get<GC::Posicion>(explosion);
     auto &enti_pos = reg.get<GC::Posicion>(entidad);
     explo_pos = enti_pos; // Colocamos la esplosion en lugar de la nave
+    Game::Player::SCORE += 500;
     ctx.elimina_entidad.push_back(entidad);
   }
 }
 void variasbalas(entt::entity &entidad, entt::registry &reg, GameContext &ctx) {
   // TODO: Dispara varias balas en distintas direcciones
+  // Creamos para tres balas
+  std::vector<GC::Velocidad> velo{
+      GC::Velocidad{-200, 200}, {0, 200}, {200, 200}};
+  auto bala1 = Factory::createBullet(reg, ctx, velo[0]);
+  auto &pos_bala = reg.get<GC::Posicion>(bala1);
+  auto &pos_enti = reg.get<GC::Posicion>(entidad);
+  pos_bala.X = pos_enti.X + Game::Enemy::Raptor::TEXTURE_W / 2;
+  pos_bala.Y = pos_enti.Y + Game::Enemy::Raptor::TEXTURE_H;
+  auto bala2 = Factory::createBullet(reg, ctx, velo[1]);
+  auto &pos_bala2 = reg.get<GC::Posicion>(bala2);
+  pos_bala2.X = pos_enti.X + Game::Enemy::Raptor::TEXTURE_W / 2;
+  pos_bala2.Y = pos_enti.Y + Game::Enemy::Raptor::TEXTURE_H;
+  auto bala3 = Factory::createBullet(reg, ctx, velo[2]);
+  auto &pos_bala3 = reg.get<GC::Posicion>(bala3);
+  pos_bala3.X = pos_enti.X + Game::Enemy::Raptor::TEXTURE_W / 2;
+  pos_bala3.Y = pos_enti.Y + Game::Enemy::Raptor::TEXTURE_H;
+  SDL_Log("RAPTOR_HA DISPARADO");
 }
-bool lado = true;
 entt::entity Factory::createEnemyRaptor(entt::registry &reg, GameContext &ctx) {
   using namespace Game::Enemy::Raptor;
 
@@ -62,16 +79,15 @@ entt::entity Factory::createEnemyRaptor(entt::registry &reg, GameContext &ctx) {
   GC::Posicion dere{ctx.pantalla.w + Game::Enemy::Raptor::TEXTURE_W,
                     ctx.pantalla.h / 3};
   GC::Posicion swap;
+  int lado = Utils::Dado(1, 2);
 
-  if (lado) {
-    // lado izquiedo
+  // lado izquiedo
+  if (lado == 1) {
     area = area_izq;
     swap = izqui;
-    lado = false;
   } else {
     area = area_der;
     swap = dere;
-    lado = true;
   }
 
   for (int i = 0; i <= 3; i++) {
@@ -84,8 +100,8 @@ entt::entity Factory::createEnemyRaptor(entt::registry &reg, GameContext &ctx) {
   auto raptor = reg.create();
   reg.emplace<GC::Raptor>(raptor);
   reg.emplace<GC::Posicion>(raptor, swap.X, swap.Y); // Fuera pantalla
-  // reg.emplace<GC::Velocidad>(raptor, Game::VELO.Vx, Game::VELO.Vy);
-  reg.emplace<GC::Velocidad>(raptor, 0.01f, 0.01f);
+  reg.emplace<GC::Velocidad>(raptor, Game::VELO.Vx, Game::VELO.Vy);
+  // reg.emplace<GC::Velocidad>(raptor, 0.01f, 0.01f);
   reg.emplace<GC::Sprite>(raptor, raptor_sp, rect_orig, rect_dest);
   reg.emplace<GC::Enemy>(raptor);
   reg.emplace<GC::Collidable>(raptor, false, rect_dest, colisionRaptor, true);
@@ -93,14 +109,10 @@ entt::entity Factory::createEnemyRaptor(entt::registry &reg, GameContext &ctx) {
                            variasbalas);
   reg.emplace<IA::Live>(raptor, 1, HEAL_MAX, true);
   reg.emplace<IA::Moviment>(raptor, destinos, 0);
-
   return raptor;
 }
-
-float disp_timer = 0.0;
-void Acciones::moveRaptor(entt::registry &reg, GameContext &ctx) {
-
-  disp_timer += *ctx.delta_time;
+float timer = 0.0f;
+void Acciones::moveRaptor(entt::registry &reg, float dt) {
 
   auto view =
       reg.view<GC::Posicion, GC::Velocidad, ::IA::Moviment, GC::Raptor>();
@@ -108,10 +120,16 @@ void Acciones::moveRaptor(entt::registry &reg, GameContext &ctx) {
     auto &pos = reg.get<GC::Posicion>(enty);
     auto &movi = reg.get<::IA::Moviment>(enty);
     auto &vel = reg.get<GC::Velocidad>(enty);
-    if (disp_timer >= 5.0f) {
-      movi.destino.back().Y = 0.0f - Game::Enemy::Raptor::TEXTURE_H * 2;
-      vel.Vx = -vel.Vx;
-      vel.Vy = -vel.Vy; // sale por arriba
+
+    timer += dt;
+    if (timer > 3.0f) {
+      pos.Y = movi.destino.back().Y;
+      pos.X = movi.destino.back().X;
+      if (vel.Vy >= 0) {
+        vel.Vy = vel.Vy;
+      }
+      timer = 0.0f;
+      reg.remove<::IA::Moviment>(enty);
     }
   }
 }

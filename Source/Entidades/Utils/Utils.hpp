@@ -5,10 +5,9 @@
 namespace Utils {
 
 void f_Blink(SDL_Texture *sprite, float time, float dt, int alpha = 100);
-bool Move_To(GC::Posicion &pos_ini, GC::Posicion &pos_final,
-             GC::Velocidad &vel);
+bool Move_To(GC::Posicion &pos_ini, GC::Posicion &pos_final, GC::Velocidad &vel,
+             float dt);
 int Dado(int Valor_min, int Valor_max);
-// bool CuentaAtras(float time, float dt, bool repite = false);
 
 struct CountDown {
   float time_actual = 0.0f;

@@ -158,5 +158,6 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
                              unabala);
     reg.emplace<IA::Live>(nave_enemiga);
     reg.emplace<GC::Enemy>(nave_enemiga);
+    reg.emplace<GC::Straight>(nave_enemiga);
   }
 }

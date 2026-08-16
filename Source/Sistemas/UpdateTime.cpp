@@ -14,7 +14,7 @@ void Sistema::IA::UpdateTimerSystem(entt::registry &reg, float dt) {
     if (time.Terminado)
       continue;
     time.tRestante -= dt;
-    if (time.tRestante <= 0.0f) {
+    if (time.tRestante > 0.0f) {
       time.tRestante = 0.0f;
       if (time.Repite) {
         // reinicia el contador

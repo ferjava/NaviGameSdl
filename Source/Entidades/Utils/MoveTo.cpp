@@ -11,15 +11,16 @@
 ///@return false no se ha alcanzado el punto
 /// return true si se ha alcanzado la posicion
 
-bool Utils::Move_To(GC::Posicion &pos, GC::Posicion &_dest,
-                    GC::Velocidad &vel) {
+bool Utils::Move_To(GC::Posicion &pos, GC::Posicion &_dest, GC::Velocidad &vel,
+                    float dt) {
   float dx = _dest.X - pos.X;
   float dy = _dest.Y - pos.Y;
   float distancia = std::hypot(dx, dy);
-  if (distancia < 0.5f)
+  // Si ls distancia es menor que el error permitidoo
+  if (distancia < 0.1) {
     return true;
-
-  pos.X += (dx / distancia);
-  pos.Y += (dy / distancia);
+  }
+  pos.X += (dx / distancia) * vel.Vx * dt;
+  pos.Y += (dy / distancia) * vel.Vy * dt;
   return false;
 }

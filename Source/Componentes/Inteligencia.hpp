@@ -39,7 +39,7 @@ struct Live {
 //
 struct Moviment {
   std::vector<GC::Posicion>
-      destino; /// destinos                   // indice del vector
-  int indice;
+      destino;    /// destinos                   // indice del vector
+  int indice = 0; // primer elemento
 };
 } // namespace IA
