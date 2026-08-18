@@ -16,21 +16,25 @@ void Sistema::IA::MoviAutomatico(entt::registry &reg, float dt,
       // pos.Y += vel.Vy * dt;
       auto &dest = reg.get<::IA::Moviment>(enti); // punto de destino ;
       bool ha_llegado = Utils::Move_To(pos, dest.destino[dest.indice], vel, dt);
-
+      int i;
       if (ha_llegado) {
         if (dest.indice == dest.destino.size() - 1) {
           // reinciamos
           pos = dest.destino[dest.indice];
+
           dest.indice = 0;
+          i = dest.indice;
         } else {
           pos = dest.destino[dest.indice];
+          i = dest.indice;
           dest.indice = dest.indice + 1;
 
-          // Incremeta en el vector
+          // Incremeta en el vector}
         }
-      }
-      if (reg.all_of<GC::Raptor>(enti)) {
-        // Acciones::moveRaptor(reg, dt);
+        if (reg.all_of<GC::Boss>(enti)) {
+
+          Acciones::moveBoss(reg, ctx, i);
+        }
       }
     }
   }

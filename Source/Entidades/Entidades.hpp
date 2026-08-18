@@ -25,7 +25,9 @@ entt::entity createGameOver(entt::registry &reg, GameContext &ctx);
 entt::entity createEnemyRaptor(entt::registry &reg, GameContext &ctx);
 entt::entity createBullet(entt::registry &reg, GameContext &ctx,
                           GC::Velocidad direccion);
+entt::entity creatEnemyBoss(entt::registry &reg, GameContext &ctx);
 } // namespace Factory
 namespace Acciones {
 void moveRaptor(entt::registry &reg, float dt);
-}
+void moveBoss(entt::registry &reg, GameContext &ctx, int index);
+} // namespace Acciones

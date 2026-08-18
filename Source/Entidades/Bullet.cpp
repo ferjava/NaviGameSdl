@@ -22,7 +22,7 @@ entt::entity Factory::creatBulletPlayer(entt::registry &reg, GameContext &ctx) {
   reg.emplace<GC::Sprite>(bala, _balasp, src, dest);
   reg.emplace<GC::Posicion>(bala, 0.0f, 0.0f);
   reg.emplace<GC::Velocidad>(bala, 0.0f, -Game::Bala::VELOCIDAD_BALA);
-  reg.emplace<GC::Collidable>(bala, false, dest, colosion_bala);
+  reg.emplace<GC::Collidable>(bala, dest, colosion_bala);
   reg.emplace<GC::BalaPlayer>(bala);
 
   return bala;
@@ -39,7 +39,7 @@ entt::entity Factory::createBullet(entt::registry &reg, GameContext &ctx,
   reg.emplace<GC::Sprite>(bala, _balasp, src, dest);
   reg.emplace<GC::Posicion>(bala, 0.0f, 0.0f);
   reg.emplace<GC::Velocidad>(bala, direc.Vx, direc.Vy);
-  reg.emplace<GC::Collidable>(bala, false, dest, colosion_bala);
+  reg.emplace<GC::Collidable>(bala, dest, colosion_bala);
   reg.emplace<GC::BalaEnemy>(bala);
 
   return bala;

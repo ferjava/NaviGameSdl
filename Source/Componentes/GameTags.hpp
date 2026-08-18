@@ -11,6 +11,7 @@ struct IconPlayer {}; // Iconos de vida
 struct GameOver {};   // Gameover
 struct Raptor {};
 struct Straight {};
+struct Boss {};
 } // namespace GC
 namespace Title {
 struct TitleImage {};

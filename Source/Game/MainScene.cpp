@@ -37,7 +37,7 @@ void MainScene::OnUpdate(float dt) {
   // temporizador oleada
   next_oleada += dt;
   // crear un limite de oleadas
-  if (oleada_actual < Game::NUMERO_DE_OLEADAS) {
+  /*if (oleada_actual < Game::NUMERO_DE_OLEADAS) {
     if (next_oleada >= Game::TIME_OLEADA) {
       next_oleada = 0.0f; // reinicio;
       Factory::createGroupEnemysStraight(_registro, NaviGame::ctx,
@@ -47,7 +47,8 @@ void MainScene::OnUpdate(float dt) {
       }
       oleada_actual++;
     }
-  }
+  }*/
+
   Sistema::IA::UpdateSystemIA(_registro, dt, NaviGame::ctx);
   Sistema::Movimiento(_registro, dt);
 
@@ -77,4 +78,5 @@ void MainScene::OnStart() {
   Factory::createVersionText(_registro, NaviGame::ctx);
   Factory::createIconVida(_registro, NaviGame::ctx);
   Factory::createPlayer(_registro, NaviGame::ctx);
+  Factory::creatEnemyBoss(_registro, NaviGame::ctx);
 }

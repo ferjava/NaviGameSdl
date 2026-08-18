@@ -19,12 +19,14 @@ struct Sprite {
                     -1}; // Para que se considere vacio (w =-1 o h = -1)
 };
 struct Collidable {
-  bool isColliding = false;
+
   SDL_FRect BoxCollidable;
 
   std::function<void(entt::registry &reg, entt::entity &enitidad,
                      std::vector<entt::entity> &destructor, GameContext &ctx)>
       alcolisonar;
+
+  bool isColliding = false;
   bool isCollidable = true;
 };
 

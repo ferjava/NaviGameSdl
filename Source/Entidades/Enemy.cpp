@@ -42,7 +42,7 @@ entt::entity Factory::createEnemy(entt::registry &reg, GameContext &ctx) {
   reg.emplace<GC::Posicion>(nave_enemiga, 0.0f, ctx.pantalla.h / 6);
   reg.emplace<GC::Velocidad>(nave_enemiga, Game::Enemy::VELOCIDAD_X, 0.0f);
   reg.emplace<GC::Sprite>(nave_enemiga, sprite, origen, desti);
-  reg.emplace<GC::Collidable>(nave_enemiga, false, desti, colisionEnemy);
+  reg.emplace<GC::Collidable>(nave_enemiga, desti, colisionEnemy);
   reg.emplace<GC::Enemy>(nave_enemiga);
   return nave_enemiga;
 }
@@ -153,7 +153,7 @@ void Factory::createGroupEnemysStraight(entt::registry &reg, GameContext &ctx,
 
     reg.emplace<GC::Velocidad>(nave_enemiga, vel_X, vel_Y);
     reg.emplace<GC::Sprite>(nave_enemiga, sprite, origen, desti);
-    reg.emplace<GC::Collidable>(nave_enemiga, false, desti, colisionEnemy);
+    reg.emplace<GC::Collidable>(nave_enemiga, desti, colisionEnemy);
     reg.emplace<IA::Dispara>(nave_enemiga, TIME_TO_SHOOT, VALOR_MAX_DISPARO,
                              unabala);
     reg.emplace<IA::Live>(nave_enemiga);
