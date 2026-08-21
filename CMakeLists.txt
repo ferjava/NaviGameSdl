@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.3)
 set(GAME_NAME NaviGameSDL)
 project(${GAME_NAME}
-        VERSION 0.0.05
+        VERSION 0.0.09
         DESCRIPTION "Creacion de un juego de naves "
 )
 #Ponemos en modo debug
@@ -55,7 +55,6 @@ fetchcontent_declare(
 fetchcontent_makeavailable(SDL3 SDL3_image SDL3_ttf EnTT)
 
 # Añadimos los archivos para compilar globales
-
 file(GLOB_RECURSE  GAME_HEADER
   Source/*.h Source/*.hpp
 )
@@ -69,6 +68,10 @@ add_executable(${GAME_NAME})
 target_include_directories(${GAME_NAME} PRIVATE
   "${CMAKE_BINARY_DIR}/Generated")
 target_sources(${GAME_NAME} PRIVATE ${GAME_SOURCE})
+
+if(WIN32)
+  target_link_libraries(SDL3_ttf-shared PRIVATE user32 gdi32)
+endif()
 target_link_libraries(${GAME_NAME} PRIVATE
   SDL3::SDL3-shared
   SDL3_image::SDL3_image-shared

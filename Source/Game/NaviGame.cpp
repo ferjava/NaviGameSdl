@@ -1,10 +1,10 @@
 #include "NaviGame.hpp"
+#include "GameConfig.hpp"
 #include "GameContex.hpp"
-#include "MainScene.hpp"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_video.h"
+#include "TitleScene.hpp"
 #include <memory>
-
 GameContext NaviGame::ctx = {};
 void NaviGame::OnInit(Engine &engine) {
   _engine = &engine;
@@ -16,14 +16,19 @@ void NaviGame::OnInit(Engine &engine) {
   ctx.pantalla.w = _width;
   ctx.pantalla.h = _height;
   ctx.render = engine.GetRenderer();
-  auto mainscene = std::make_unique<MainScene>(this);
-  _scenedirector.Push(std::move(mainscene));
-  _scenedirector.Current()->OnInit();
+  ctx.director = &_scenedirector;
+  auto titlescene = std::make_unique<TitleScene>(this);
+  _scenedirector.Push(std::move(titlescene));
+  while (!_scenedirector.Current()->OnInit()) {
+  }
+  Pantalla_W = ctx.pantalla.w;
+  Pantalla_H = ctx.pantalla.h;
 }
 void NaviGame::OnUpdate(float deltaTime) {
 
   ctx.delta_time = &deltaTime;
   _scenedirector.Current()->OnUpdate(deltaTime);
+  _scenedirector.ChangePending();
 }
 
 void NaviGame::OnRender(SDL_Renderer *renderer) {

@@ -1,9 +1,12 @@
 #include "../Componentes/Componentes.hpp"
+#include "../Entidades/Entidades.hpp"
 #include "../Game/NaviGame.hpp"
 #include "SDL3/SDL_log.h"
 #include "SDL3/SDL_rect.h"
 #include "Sistemas.hpp"
 #include <asm-generic/errno.h>
+#include <functional>
+#include <memory>
 // NOTE: Para que funcione bien se debe actualizar despues del Sistema de
 // Movimiento
 //
@@ -15,10 +18,13 @@ void Sistema::Colisones(entt::registry &reg) {
   for (auto entidad : view) {
     reg.get<GC::Collidable>(entidad).isColliding = false;
   }
+
   // Obtener los que pueden colisionar
   auto ColisionView = reg.view<GC::Collidable, GC::Sprite>();
   for (auto entiA : ColisionView) {
     auto &colA = ColisionView.get<GC::Collidable>(entiA);
+    if (!colA.isCollidable)
+      continue;
     auto &spA = ColisionView.get<GC::Sprite>(entiA);
     if (spA.dest.x <= 0.0f | spA.dest.y <= 0.0f)
       continue;
@@ -26,6 +32,8 @@ void Sistema::Colisones(entt::registry &reg) {
 
     for (auto entiB : ColisionView) {
       auto &colB = ColisionView.get<GC::Collidable>(entiB);
+      if (!colB.isCollidable)
+        continue;
       auto &spB = ColisionView.get<GC::Sprite>(entiB);
       if (spB.dest.x <= 0.0f | spB.dest.y <= 0.0f)
         continue;
@@ -44,14 +52,34 @@ void Sistema::Colisones(entt::registry &reg) {
                    reg.all_of<GC::BalaPlayer>(entiB)) {
           continue;
         }
+        if (reg.all_of<GC::Enemy>(entiA) && reg.all_of<GC::Enemy>(entiB)) {
+          continue;
+        }
+
+        if (reg.all_of<GC::BalaEnemy>(entiA) && reg.all_of<GC::Enemy>(entiB)) {
+          continue;
+        } else if (reg.all_of<GC::Enemy>(entiA) &&
+                   reg.all_of<GC::BalaEnemy>(entiB)) {
+          continue;
+        }
+        if (reg.all_of<GC::BalaEnemy>(entiA) &&
+            reg.all_of<GC::BalaEnemy>(entiB))
+          continue;
+        if ((reg.all_of<GC::BalaPlayer>(entiA) &&
+             reg.all_of<GC::BalaEnemy>(entiB)) ||
+            (reg.all_of<GC::BalaEnemy>(entiA) &&
+             reg.all_of<GC::BalaPlayer>(entiB))) {
+          continue;
+        }
 
         colA.isColliding = true;
         colB.isColliding = true;
-        colA.alcolisonar(reg, entiA, EntidadParaDestruir, NaviGame::ctx);
-        colB.alcolisonar(reg, entiB, EntidadParaDestruir, NaviGame::ctx);
       }
       if (colA.isColliding && colB.isColliding) {
         SDL_Log("Colison efectuada");
+
+        colA.alcolisonar(reg, entiA, EntidadParaDestruir, NaviGame::ctx);
+        colB.alcolisonar(reg, entiB, EntidadParaDestruir, NaviGame::ctx);
       }
 
       // Nuestra logica de colision
@@ -59,6 +87,7 @@ void Sistema::Colisones(entt::registry &reg) {
   }
   for (auto entidad : EntidadParaDestruir) {
     if (reg.valid(entidad)) {
+
       reg.destroy(entidad);
     }
   }

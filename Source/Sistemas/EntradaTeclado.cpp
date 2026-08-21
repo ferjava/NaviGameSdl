@@ -10,15 +10,21 @@ float disparoTimer = 0.0f;
 const float COOLDOWN_DISPARO = 0.2f;
 
 void Sistema::Entrada_Teclado(entt::registry &reg, float dt) {
-  auto view = reg.view<GC::Player, GC::Velocidad, GC::Posicion, GC::Sprite>();
+  auto view = reg.view<GC::Player, GC::Velocidad, GC::Posicion, GC::Sprite,
+                       ::IA::Live>();
   const bool *keys = SDL_GetKeyboardState(nullptr);
   disparoTimer += dt;
 
   for (auto entity : view) {
     auto &vel = view.get<GC::Velocidad>(entity);
     auto &sp = view.get<GC::Sprite>(entity);
+    auto &live = view.get<::IA::Live>(entity);
+    // Comprobamos que este vivo
+
     vel.Vx = 0.0f;
     vel.Vy = 0.0f;
+    if (!live.is_live)
+      continue;
     sp.source.x = Game::Player::ANIMACION[4];
     if (keys[SDL_SCANCODE_UP]) {
       vel.Vy = -Game::Player::SPEED;

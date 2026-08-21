@@ -1,16 +1,12 @@
 # TODO
 
-## VERSION 0.0.05
+## VERSION 0.0.10
 
-> [!NOTE]
-> Añadimos ya un enemigo.Le daremos movimiento
-> También crearemos y detector de colisiones
+> [!TODO] Creamos el boss para terminar con este proyecto
+> quizás algún día le añada naves y fase
 
-- [V] Crear la entidad enemy.
-- [V] Añadirle un movimiento (Cruzara la pantalla de manera horizontal)
-- [V] Añadimos un detector de colisiones
-- [V] Comprobamos colisiones con el log
-- [V] Depuración y comprobación de memoria
-
-> [!WARNING]
-> Ahora las balas son eliminadas al salir por la pantalla
+-[] Crear la entidad boss
+-[] Añadir al CMake los cambios para compilar en windows
+-[] Comprobar la dificultad y ajustarla
+-[] opcional : añadir alguna nueva explosion
+-[] comprobar la memoria y depurar

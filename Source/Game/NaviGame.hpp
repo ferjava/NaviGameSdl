@@ -24,4 +24,5 @@ public:
 
   void OnCleanup() override;
   Engine *getEngine() { return _engine; };
+  SceneManager *getSceneManager() { return &_scenedirector; };
 };
