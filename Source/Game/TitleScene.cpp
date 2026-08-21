@@ -12,7 +12,7 @@ TitleScene::TitleScene(NaviGame *game) : _game(game) {}
 
 bool TitleScene::OnInit() {
 
-  //!.limpiamos del registro 
+  //!.limpiamos del registro
   _registro.clear();
   // Iniciar TextureManager
   _texture.Init(NaviGame::ctx.render);
@@ -38,8 +38,8 @@ void TitleScene::OnUpdate(float dt) {
     if (keys[SDL_SCANCODE_SPACE]) {
       // Aqui iniciamos el juego
       // 1 Creamos la escena
-     NaviGame::ctx.director->Push(std::move(_mainscene));
-     // NaviGame::ctx.director->Change(std::move(_mainscene));
+      NaviGame::ctx.director->Push(std::move(_mainscene));
+      // NaviGame::ctx.director->Change(std::move(_mainscene));
     }
   }
   // Hacemos blink en texto

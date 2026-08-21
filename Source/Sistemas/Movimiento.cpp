@@ -5,16 +5,17 @@
 #include "Sistemas.hpp"
 #include "entt/entity/fwd.hpp"
 void Sistema::Movimiento(entt::registry &reg, float dt) {
-  auto view = reg.view<GC::Posicion,
-                       GC::Velocidad>(
+  auto view = reg.view<GC::Posicion, GC::Velocidad>(
       entt::exclude<::IA::Moviment>); // Excluye las de movimiento autamitca
   std::vector<entt::entity> EntidadParaDestruir;
   for (auto enti : view) {
     auto &pos = view.get<GC::Posicion>(enti);
     auto &vel = view.get<GC::Velocidad>(enti);
-
-    pos.X += vel.Vx * dt;
-    pos.Y += vel.Vy * dt;
+    if (!reg.all_of<::IA::Moviment>(enti)) {
+      pos.X += vel.Vx * dt;
+      pos.Y += vel.Vy * dt;
+    } else {
+    }
     // Comprobamos las balas
     if (reg.all_of<GC::BalaPlayer>(enti)) {
       if (pos.Y <= 0) {

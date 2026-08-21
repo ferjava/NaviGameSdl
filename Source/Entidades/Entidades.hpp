@@ -29,5 +29,5 @@ entt::entity creatEnemyBoss(entt::registry &reg, GameContext &ctx);
 } // namespace Factory
 namespace Acciones {
 void moveRaptor(entt::registry &reg, float dt);
-void moveBoss(entt::registry &reg, GameContext &ctx, int index);
+void moveBoss(entt::registry &reg, GameContext &ctx);
 } // namespace Acciones

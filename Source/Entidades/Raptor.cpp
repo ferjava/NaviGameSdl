@@ -104,11 +104,11 @@ entt::entity Factory::createEnemyRaptor(entt::registry &reg, GameContext &ctx) {
   // reg.emplace<GC::Velocidad>(raptor, 0.01f, 0.01f);
   reg.emplace<GC::Sprite>(raptor, raptor_sp, rect_orig, rect_dest);
   reg.emplace<GC::Enemy>(raptor);
-  reg.emplace<GC::Collidable>(raptor, rect_dest, colisionRaptor, true);
+  reg.emplace<GC::Collidable>(raptor, rect_dest, colisionRaptor);
   reg.emplace<IA::Dispara>(raptor, TIME_TO_SHOOT, CARA_DADO_DISPARA,
                            variasbalas);
   reg.emplace<IA::Live>(raptor, 1, HEAL_MAX, true);
-  reg.emplace<IA::Moviment>(raptor, destinos, 0);
+  reg.emplace<IA::Moviment>(raptor, destinos, true, 0);
   return raptor;
 }
 float timer = 0.0f;

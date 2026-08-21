@@ -9,6 +9,10 @@
 #include <functional>
 #include <vector>
 namespace IA {
+struct PosChange {
+}; //@brief tags que se añade cuando cambia de una posicion a otra
+struct MoveEnd {
+}; //@brief tags que se añade cuando se termina el movimiento el bucle
 struct Dispara {
 
   float turno_time; // determina el tiempo hasta que vuelva a intentar disparar
@@ -38,8 +42,8 @@ struct Live {
 // se desplazara nuestra nave
 //
 struct Moviment {
-  std::vector<GC::Posicion>
-      destino;    /// destinos                   // indice del vector
-  int indice = 0; // primer elemento
+  std::vector<GC::Posicion> destino;
+  bool repeat = false; //<@param Repite el movimento
+  int indice = 0;      // primer elemento
 };
 } // namespace IA

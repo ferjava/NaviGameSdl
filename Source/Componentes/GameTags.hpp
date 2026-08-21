@@ -12,6 +12,7 @@ struct GameOver {};   // Gameover
 struct Raptor {};
 struct Straight {};
 struct Boss {};
+struct Boss_changed {};
 } // namespace GC
 namespace Title {
 struct TitleImage {};
